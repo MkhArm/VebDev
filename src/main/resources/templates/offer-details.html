@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body>
+<div class="d-flex flex-column min-vh-100">
+    <header th:replace="fragments/header"></header>
+
+    <div class="container-1">
+        <h1 class="custom-margin-top">Информация о предложении</h1>
+
+        <div class="card">
+            <img class="card-img-top" th:src="${offer.imageUrl}" alt="Car Image">
+            <div class="card-body">
+                <p class="card-title" th:text="${offer.brandName + ' ' + offer.modelName}"></p>
+                <p class="card-text" th:text="${'Price: ' + offer.price}"></p>
+                <p class="card-text" th:text="${'Year: ' + offer.year}"></p>
+                <p class="card-text" th:text="${'Engine: ' + offer.engine}"></p>
+                <p class="card-text" th:text="${'Transmission: ' + offer.transmission}"></p>
+                <p class="card-text" th:text="${'Mileage: ' + offer.mileage}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
