@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body>
+<div th:replace="~{fragments/header}">Header</div>
+<h2 align="center">Edit user</h2>
+<form th:action="@{/user/edit/{oid}(oid=${user.id})}" th:method="post" th:object="${user}">
+  <input type="hidden" id="id" th:field="${id}" name="id" required/>
+  <input type="hidden" id="role" th:field="${user.role}" name="role" required/>
+  <div>
+    <label for="imageUrl">Image URL:</label>
+    <input type="text" id="imageUrl" th:field="${user.imageUrl}" name="imageUrl" required/>
+    <div>
+      <p th:if="${#fields.hasErrors('${user.imageUrl}')}" th:errors="${user.imageUrl}" style="color: red" class="text-danger"></p>
+    </div>
+  </div>
+
+  <div>
+    <label for="firstName">First name:</label>
+    <input type="text" id="firstName" th:field="${user.firstName}" name="firstName" required/>
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="${user.firstName}" style="color: red" class="text-danger">Ошибка</p>
+  </div>
+
+  <div>
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" th:field="${user.lastName}" name="lastName" required/>
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="${user.lastName}" style="color: red" class="text-danger">Ошибка</p>
+  </div>
+
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" th:field="${user.username}" name="username" required/>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="${user.username}" style="color: red" class="text-danger">Ошибка</p>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <a th:href="@{/login}" class="link-button">Back</a>
+    <button type="submit" class="link-button bg-green">Save edit</button>
+  </div>
+</form>
+<div class="padding-block"></div>
+<div th:replace="fragments/footer"></div>
+</body>
+</html>

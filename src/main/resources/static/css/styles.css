@@ -186,3 +186,35 @@ button:hover {
     margin-top: 4.5rem;
 }
 
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #f8f9fa; /* Замените цвет фона на свой */
+    color: black; /* Черный текст */
+    padding: 1rem; /* Добавим отступы для выравнивания */
+}
+
+.buttons-container {
+    display: flex;
+    gap: 1rem; /* Расстояние между кнопками */
+}
+
+.edit-button, .delete-button {
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: black; /* Наследовать цвет текста от родителя */
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

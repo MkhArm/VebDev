@@ -7,6 +7,7 @@ import org.example.models.entities.UserRole;
 import org.example.models.enums.UserRoleType;
 import org.example.repositories.UserRoleRepository;
 import org.example.repositories.UserRepository;
+import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.UserOutputDTO;
 import org.example.services.internal.InternalRoleService;
 import org.example.services.internal.InternalUserService;
@@ -116,7 +117,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
 
     @Override
     public UserOutputDTO getUserOutputDTOById(String id) {
-        return modelMapper.map(userRepository.getById(id), UserOutputDTO.class);
+        return modelMapper.map(userRepository.findById(id), UserOutputDTO.class);
     }
 
 }

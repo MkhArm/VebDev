@@ -1,5 +1,7 @@
 package org.example.controllers.view;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.example.services.BrandService;
 import org.example.services.ModelService;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserViewController {
@@ -48,16 +51,47 @@ public class UserViewController {
     public String allUsers(Model model) {
         List<UserOutputDTO> users = userService.getUserOutputDTO();
         model.addAttribute("users", users);
-        System.out.println(users.get(0).toString());
         return "users-all";
     }
 
     @GetMapping("/user/{id}")
     public String userDetails(@PathVariable("id") String id, Model model){
         UserOutputDTO user = userService.getUserOutputDTOById(id);
-        System.out.println(user.toString());
         model.addAttribute("user",user);
         return "user-details";
     }
+
+    @GetMapping("/user/edit/{id}")
+    public String editGetOne(@PathVariable String id, Model model) {
+        UserOutputDTO user = userService.getUserOutputDTOById(id);
+        model.addAttribute("user", user);
+        model.addAttribute("id", user.getId());
+        return "user-edit";
+    }
+
+//    @PostMapping("/user/edit/{username}")
+//    public String editPostOne(@Valid UserAdEdDTO newUser, @PathVariable String username, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletResponse response) throws Throwable {
+//        newUser.setId(userService.findByUsername(username).get().getId());
+//        if (newUser.getPassword().equals("")) {
+//            newUser.setPassword(userService.findUserCrud(username).get().getPassword());
+//        } else {
+//            Cookie usernameCookie = new Cookie("username", null);
+//            usernameCookie.setMaxAge(0);
+//            response.addCookie(usernameCookie);
+//            Cookie passwordCookie = new Cookie("password", null);
+//            passwordCookie.setMaxAge(0);
+//            response.addCookie(passwordCookie);
+//            Optional<UserCtrlDTO> user = userService.findByUsername(username);
+//            return "redirect:/";
+//        }
+//        if (bindingResult.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("user", newUser);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", bindingResult);
+//            return "redirect:/login/edit/{username}";
+//        }
+//        System.out.println(newUser);
+//        userService.create(newUser);
+//        return "redirect:/login";
+//    }
 
 }

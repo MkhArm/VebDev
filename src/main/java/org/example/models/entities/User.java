@@ -92,4 +92,18 @@ public class User extends TimestampedEntity {
     public List<Offer> getOffers() {
         return offers;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActive=" + isActive +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", role=" + role +
+                ", offers=" + offers +
+                '}';
+    }
 }

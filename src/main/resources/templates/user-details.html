@@ -8,12 +8,19 @@
     <div class="container">
         <h1 class="custom-margin-top">Информация о пользователе</h1>
         <div class="card">
-            <img class="card-img-top" th:src="${user.imageUrl}" alt="User Image">
+            <img class="card-img-top" th:if="${user != null}" th:src="${user.imageUrl}" alt="User Image">
             <div class="card-body">
-                <p class="card-title" th:text="${user.firstName + ' ' + user.lastName}"></p>
-                <p class="card-text" th:text="${'Active: ' + user.active}"></p>
-                <p class="card-text" th:text="${'Role: ' + user.role}"></p>
+                <p class="card-title" th:if="${user != null}" th:text="${user.firstName + ' ' + user.lastName}"></p>
+                <p class="card-text" th:if="${user != null}" th:text="${'Active: ' + user.active}"></p>
+                <p class="card-text" th:if="${user != null}" th:text="${'Role: ' + user.role}"></p>
             </div>
+            <div class="card-footer">
+                <div class="buttons-container">
+                    <button type="submit"><a th:if="${user != null}" th:href="@{/user/edit/{id}(id=${user.id})}">Edit user</a></button>
+                    <button type="submit"><a th:if="${user != null}" th:href="@{/user/delete/{id}(id=${user.id})}">Delete user</a></button>
+                </div>
+            </div>
+
         </div>
     </div>
 

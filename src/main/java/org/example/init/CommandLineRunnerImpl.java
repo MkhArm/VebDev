@@ -79,20 +79,20 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         UserRoleDTO userRole = userRoleService.createUserRole(new UserRoleDTO(UserRoleType.USER));
         UserRoleDTO adminRole = userRoleService.createUserRole(new UserRoleDTO(UserRoleType.ADMIN));
 
-        String user1 = userService.createUser(new UserDTO("username3", "password3", "User3", "Doe", true, "userImageUrl3")).getId();
-        String user2 = userService.createUser(new UserDTO("username4", "password4", "User4", "Doe", true, "userImageUrl4")).getId();
-        String user3 = userService.createUser(new UserDTO("username5", "password5", "User5", "Doe", true, "userImageUrl5")).getId();
-        String user4 = userService.createUser(new UserDTO("username6", "password6", "User6", "Doe", true, "userImageUrl6")).getId();
+        String user1 = userService.createUser(new UserDTO("username3", "password3", "User3", "Doe", true, "/images/users/ladyBag.jpg")).getId();
+        String user2 = userService.createUser(new UserDTO("username4", "password4", "User4", "Doe", true, "/images/users/mrPs.jpg")).getId();
+        String user3 = userService.createUser(new UserDTO("Never", "123456", "Rick", "Astley", true, "/images/users/rickAstley.jpg")).getId();
+        String user4 = userService.createUser(new UserDTO("username6", "password6", "User6", "Doe", false, "userImageUrl6")).getId();
         String user5 = userService.createUser(new UserDTO("username7", "password7", "User7", "Doe", true, "userImageUrl7")).getId();
         String user6 = userService.createUser(new UserDTO("username8", "password8", "User8", "Doe", true, "userImageUrl8")).getId();
         String user7 = userService.createUser(new UserDTO("username9", "password9", "User9", "Doe", true, "userImageUrl9")).getId();
         String user8 = userService.createUser(new UserDTO("username10", "password10", "User10", "Doe", true, "userImageUrl10")).getId();
-        String user9 = userService.createUser(new UserDTO("username11", "password11", "User11", "Doe", true, "userImageUrl11")).getId();
+        String user9 = userService.createUser(new UserDTO("username11", "password11", "User11", "Doe", false, "userImageUrl11")).getId();
         String user10 = userService.createUser(new UserDTO("username12", "password12", "User12", "Doe", true, "userImageUrl12")).getId();
         String user11 = userService.createUser(new UserDTO("username13", "password13", "User13", "Doe", true, "userImageUrl13")).getId();
         String user12 = userService.createUser(new UserDTO("username14", "password14", "User14", "Doe", true, "userImageUrl14")).getId();
         String user13 = userService.createUser(new UserDTO("username15", "password15", "User15", "Doe", true, "userImageUrl15")).getId();
-        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", true, "userImageUrl16")).getId();
+        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", false, "userImageUrl16")).getId();
         String user15 = userService.createUser(new UserDTO("username17", "password17", "User17", "Doe", true, "userImageUrl17")).getId();
         String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
         String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();

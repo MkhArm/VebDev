@@ -1,7 +1,11 @@
 package org.example.config;
 
 import org.example.models.entities.Model;
+import org.example.models.entities.Offer;
+import org.example.models.entities.User;
 import org.example.services.dtos.output.ModelOutputDTO;
+import org.example.services.dtos.output.OfferDetailsDTO;
+import org.example.services.dtos.output.UserOutputDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +34,10 @@ public class ApplicationBeanConfiguration {
 
         TypeMap<Model, ModelOutputDTO> typeMapModelOutput = modelMapper.createTypeMap(Model.class, ModelOutputDTO.class);
         typeMapModelOutput.addMappings(m->m.map(src -> src.getBrand().getName(), ModelOutputDTO::setBrand_name));
+        TypeMap<Offer, OfferDetailsDTO> typeOfferDetailsDTO = modelMapper.createTypeMap(Offer.class, OfferDetailsDTO.class);
+        typeOfferDetailsDTO.addMappings(m->m.map(src -> src.getModel().getBrand().getName(), OfferDetailsDTO::setBrandName));
+//        TypeMap<User, UserOutputDTO> typeUserOutputDTO = modelMapper.createTypeMap(User.class, UserOutputDTO.class);
+//        typeUserOutputDTO.addMappings(m->m.map(src -> src.getActive(), UserOutputDTO::setActive));
 
         return modelMapper;
     }
