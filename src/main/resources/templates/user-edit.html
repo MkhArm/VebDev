@@ -1,44 +1,79 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/head"></head>
+
 <body>
-<div th:replace="~{fragments/header}">Header</div>
-<h2 align="center">Edit user</h2>
-<form th:action="@{/user/edit/{oid}(oid=${user.id})}" th:method="post" th:object="${user}">
-  <input type="hidden" id="id" th:field="${id}" name="id" required/>
-  <input type="hidden" id="role" th:field="${user.role}" name="role" required/>
-  <div>
-    <label for="imageUrl">Image URL:</label>
-    <input type="text" id="imageUrl" th:field="${user.imageUrl}" name="imageUrl" required/>
-    <div>
-      <p th:if="${#fields.hasErrors('${user.imageUrl}')}" th:errors="${user.imageUrl}" style="color: red" class="text-danger"></p>
+<header th:replace="fragments/header"></header>
+
+<div class="d-flex flex-column min-vh-100">
+  <div class="container">
+    <div class="form-add mt-5">
+      <div class="text-center">
+        <h1 class="custom-margin-top">Редактировать пользователя</h1>
+      </div>
+      <form th:action="@{/user/edit/{oid}(oid=${user.id})}" th:method="post" th:object="${user}" class="m-md-auto w-50 pb-3">
+
+        <div class="mb-3">
+          <label class="form-label" for="username">Username</label>
+          <input th:field="*{username}" th:value="${user.username}" th:errorclass="is-invalid" type="text"
+                 class="form-control text-center" id="username" aria-describedby="username"/>
+          <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="password">Password</label>
+          <input th:field="*{password}" th:value="${user.password}" th:errorclass="is-invalid" type="text"
+                 class="form-control text-center" id="password" aria-describedby="password"/>
+          <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="firstName">First Name</label>
+          <input th:field="*{firstName}" th:value="${user.firstName}" th:errorclass="is-invalid" type="text"
+                 class="form-control text-center" id="firstName" aria-describedby="firstName"/>
+          <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input th:field="*{lastName}" th:value="${user.lastName}" th:errorclass="is-invalid" type="text"
+                 class="form-control text-center" id="lastName" aria-describedby="lastName"/>
+          <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></small>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="isActive">isActive</label>
+          <select th:field="*{isActive}" class="form-control text-center" id="isActive">
+            <option value="TRUE">TRUE</option>
+            <option value="FALSE">FALSE</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="imageUrl">Image URL</label>
+          <input th:field="*{imageUrl}" th:value="${user.imageUrl}" th:errorclass="is-invalid" type="text"
+                 class="form-control text-center" id="imageUrl" aria-describedby="imageUrl"/>
+          <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger"></small>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="role-select">Role</label>
+          <select th:field="*{role}" class="form-control" id="role-select" name="role">
+            <div th:each="userRoleDTO : ${roles}">
+              <option th:value="${userRoleDTO.getRole()}"
+                      th:selected="${userRoleDTO.getRole() eq user.role}"
+                      th:text="${userRoleDTO.getRole()}"></option>
+            </div>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+      </form>
     </div>
   </div>
-
-  <div>
-    <label for="firstName">First name:</label>
-    <input type="text" id="firstName" th:field="${user.firstName}" name="firstName" required/>
-    <p th:if="${#fields.hasErrors('firstName')}" th:errors="${user.firstName}" style="color: red" class="text-danger">Ошибка</p>
-  </div>
-
-  <div>
-    <label for="lastName">Last name:</label>
-    <input type="text" id="lastName" th:field="${user.lastName}" name="lastName" required/>
-    <p th:if="${#fields.hasErrors('lastName')}" th:errors="${user.lastName}" style="color: red" class="text-danger">Ошибка</p>
-  </div>
-
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" id="username" th:field="${user.username}" name="username" required/>
-    <p th:if="${#fields.hasErrors('username')}" th:errors="${user.username}" style="color: red" class="text-danger">Ошибка</p>
-  </div>
-
-  <div style="margin-top: 10px;">
-    <a th:href="@{/login}" class="link-button">Back</a>
-    <button type="submit" class="link-button bg-green">Save edit</button>
-  </div>
-</form>
-<div class="padding-block"></div>
+</div>
 <div th:replace="fragments/footer"></div>
 </body>
 </html>

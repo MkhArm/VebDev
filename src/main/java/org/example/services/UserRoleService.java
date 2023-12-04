@@ -1,5 +1,6 @@
 package org.example.services;
 
+import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.input.UserRoleDTO;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface UserRoleService {
     List<UserRoleDTO> getAllUserRoles();
 
     void deleteUserRole(String id);
+
+    List<UserRoleDTO> findAll();
 }
 

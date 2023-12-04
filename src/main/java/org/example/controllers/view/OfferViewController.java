@@ -6,6 +6,7 @@ import org.example.services.ModelService;
 import org.example.services.OfferService;
 import org.example.services.UserService;
 import org.example.services.dtos.input.OfferDTO;
+import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,13 +40,14 @@ public class OfferViewController {
         this.userService = userService;
     }
 
-    @GetMapping("/search")
+    @GetMapping("/offer/search")
     public String showSearchOfferPage(Model model) {
         return "offers-search";
     }
 
-    @GetMapping("/add-offer")
+    @GetMapping("/offer/add")
     public String showAddOfferPage(Model model){
+        model.addAttribute("OfferDTO", new OfferDTO());
         model.addAttribute("models",modelService.findAll());
         model.addAttribute("users",userService.findAll());
         return "offer-add";
@@ -63,14 +65,14 @@ public class OfferViewController {
         return new OfferDTO();
     }
 
-    @PostMapping("/add-offer")
+    @PostMapping("/offer/add")
     public String addOffer(@Valid OfferDTO offerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("offerDto", offerDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDto", bindingResult);
             System.out.println(offerDto);
-            return "redirect:/add-offer";
+            return "redirect:/offer/add";
         }
         offerService.createOffer(offerDto);
         return "redirect:/home";

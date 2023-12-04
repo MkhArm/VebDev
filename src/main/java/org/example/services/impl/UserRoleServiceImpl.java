@@ -3,6 +3,7 @@ package org.example.services.impl;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.example.models.enums.UserRoleType;
+import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.input.UserRoleDTO;
 import org.example.models.entities.UserRole;
 import org.example.repositories.UserRoleRepository;
@@ -65,6 +66,11 @@ public class UserRoleServiceImpl implements UserRoleService, InternalRoleService
         UserRole userRole = userRoleRepository.findByRole(roleType)
                 .orElseThrow(() -> new EntityNotFoundException("User role not found: " + roleType));
         return userRole;
+    }
+
+    @Override
+    public List<UserRoleDTO> findAll() {
+        return userRoleRepository.findAll().stream().map(e -> modelMapper.map(e, UserRoleDTO.class)).collect(Collectors.toList());
     }
 }
 

@@ -88,27 +88,27 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         String user7 = userService.createUser(new UserDTO("username9", "password9", "User9", "Doe", true, "userImageUrl9")).getId();
         String user8 = userService.createUser(new UserDTO("username10", "password10", "User10", "Doe", true, "userImageUrl10")).getId();
         String user9 = userService.createUser(new UserDTO("username11", "password11", "User11", "Doe", false, "userImageUrl11")).getId();
-        String user10 = userService.createUser(new UserDTO("username12", "password12", "User12", "Doe", true, "userImageUrl12")).getId();
-        String user11 = userService.createUser(new UserDTO("username13", "password13", "User13", "Doe", true, "userImageUrl13")).getId();
-        String user12 = userService.createUser(new UserDTO("username14", "password14", "User14", "Doe", true, "userImageUrl14")).getId();
-        String user13 = userService.createUser(new UserDTO("username15", "password15", "User15", "Doe", true, "userImageUrl15")).getId();
-        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", false, "userImageUrl16")).getId();
-        String user15 = userService.createUser(new UserDTO("username17", "password17", "User17", "Doe", true, "userImageUrl17")).getId();
-        String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
-        String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();
-        String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
+//        String user10 = userService.createUser(new UserDTO("username12", "password12", "User12", "Doe", true, "userImageUrl12")).getId();
+//        String user11 = userService.createUser(new UserDTO("username13", "password13", "User13", "Doe", true, "userImageUrl13")).getId();
+//        String user12 = userService.createUser(new UserDTO("username14", "password14", "User14", "Doe", true, "userImageUrl14")).getId();
+//        String user13 = userService.createUser(new UserDTO("username15", "password15", "User15", "Doe", true, "userImageUrl15")).getId();
+//        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", false, "userImageUrl16")).getId();
+//        String user15 = userService.createUser(new UserDTO("username17", "password17", "User17", "Doe", true, "userImageUrl17")).getId();
+//        String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
+//        String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();
+//        String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
         String admin = userService.createUser(new UserDTO("admin", "adminPass", "Admin", "Admin", true, "adminImageUrl", UserRoleType.ADMIN)).getId();
 
         OfferDTO offerDTO1 = offerService.createOffer(new OfferDTO("Все автомобили, представленные в продаже, проходят диагностику по всем параметрам, с результатами диагностики Вы можете ознакомиться при осмотре автомобиля."
                 , EngineType.GASOLINE, "/images/offers/ToyotaCamry2019.png", 81341, new BigDecimal("2399000.00"), TransmissionType.AUTOMATIC, 2019, model1, user1));
-//        OfferDTO offerDTO2 = offerService.createOffer(new OfferDTO("Распродажа, финальный sale!\n\uD83D\uDCA5Гарантия 2 ГОДА или 100 000км пробега на ВСЕ НОВЫЕ автомобили BMW в РОЛЬФ Премиум Вешки!\uD83D\uDCA5"
-//                , EngineType.DIESEL, "/images/offers/BMWX52023.png", 0, new BigDecimal("15850000.00"), TransmissionType.AUTOMATIC, 2023, model2, user2));
-//        OfferDTO offerDTO3 = offerService.createOffer(new OfferDTO("Обслуживалась у официалов.\nПробег родной. Один хозяин.\nВ наличии комплект летней резины на дисках. Сигнализация с автозапуском."
-//                , EngineType.GASOLINE, "/images/offers/ToyotaCorolla2013.png", 101000, new BigDecimal("1500000.00"), TransmissionType.MANUAL, 2013, model3, admin));
-//        OfferDTO offerDTO4 = offerService.createOffer(new OfferDTO("Description4", EngineType.GASOLINE, "offerImageUrl4", 55000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 2017, model4, user3));
-//        OfferDTO offerDTO5 = offerService.createOffer(new OfferDTO("Description5", EngineType.DIESEL, "offerImageUrl5", 62000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2018, model5, user4));
-//        OfferDTO offerDTO6 = offerService.createOffer(new OfferDTO("Description6", EngineType.GASOLINE, "offerImageUrl6", 59000, new BigDecimal("11000.00"), TransmissionType.AUTOMATIC, 2016, model6, user5));
-//        OfferDTO offerDTO7 = offerService.createOffer(new OfferDTO("Description7", EngineType.DIESEL, "offerImageUrl7", 68000, new BigDecimal("16000.00"), TransmissionType.MANUAL, 2015, model7, user6));
+        OfferDTO offerDTO2 = offerService.createOffer(new OfferDTO("Распродажа, финальный sale!\n\uD83D\uDCA5Гарантия 2 ГОДА или 100 000км пробега на ВСЕ НОВЫЕ автомобили BMW в РОЛЬФ Премиум Вешки!\uD83D\uDCA5"
+                , EngineType.DIESEL, "/images/offers/BMWX52023.png", 0, new BigDecimal("15850000.00"), TransmissionType.AUTOMATIC, 2023, model2, user2));
+        OfferDTO offerDTO3 = offerService.createOffer(new OfferDTO("Обслуживалась у официалов.\nПробег родной. Один хозяин.\nВ наличии комплект летней резины на дисках. Сигнализация с автозапуском."
+                , EngineType.GASOLINE, "/images/offers/ToyotaCorolla2013.png", 101000, new BigDecimal("1500000.00"), TransmissionType.MANUAL, 2013, model3, admin));
+        OfferDTO offerDTO4 = offerService.createOffer(new OfferDTO("Description4", EngineType.GASOLINE, "offerImageUrl4", 55000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 2017, model4, user3));
+        OfferDTO offerDTO5 = offerService.createOffer(new OfferDTO("Description5", EngineType.DIESEL, "offerImageUrl5", 62000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2018, model5, user4));
+        OfferDTO offerDTO6 = offerService.createOffer(new OfferDTO("Description6", EngineType.GASOLINE, "offerImageUrl6", 59000, new BigDecimal("11000.00"), TransmissionType.AUTOMATIC, 2016, model6, user5));
+        OfferDTO offerDTO7 = offerService.createOffer(new OfferDTO("Description7", EngineType.DIESEL, "offerImageUrl7", 68000, new BigDecimal("16000.00"), TransmissionType.MANUAL, 2015, model7, user6));
 //        OfferDTO offerDTO8 = offerService.createOffer(new OfferDTO("Description8", EngineType.GASOLINE, "offerImageUrl8", 51000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2013, model8, user7));
 //        OfferDTO offerDTO9 = offerService.createOffer(new OfferDTO("Description9", EngineType.DIESEL, "offerImageUrl9", 63000, new BigDecimal("15000.00"), TransmissionType.MANUAL, 2012, model9, user8));
 //        OfferDTO offerDTO10 = offerService.createOffer(new OfferDTO("Description10", EngineType.GASOLINE, "offerImageUrl10", 57000, new BigDecimal("11500.00"), TransmissionType.AUTOMATIC, 2010, model10, user9));

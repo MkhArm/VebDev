@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head"></head>
-
-<body class="d-flex flex-column min-vh-100">
-<div class="container mt-4 flex-grow-1">
+<body>
+<div class="d-flex flex-column min-vh-100">
     <header th:replace="fragments/header"></header>
-    <h2 class="custom-margin-top">Поиск предложений</h2>
-
+    <div class="container">
+        <h2>Поиск предложения:</h2>
+    </div>
 </div>
-
 <div th:replace="fragments/footer"></div>
 </body>
 </html>

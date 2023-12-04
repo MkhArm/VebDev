@@ -3,19 +3,15 @@ package org.example.services.dtos.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.example.models.enums.UserRoleType;
-import org.example.util.customValidators.annotations.PasswordConstraint;
-import org.example.util.customValidators.annotations.UsernameConstraint;
-import org.hibernate.validator.constraints.Length;
-
-import java.util.UUID;
 
 public class UserDTO {
     private String id;
 
-    @UsernameConstraint
+//    @UsernameConstraint
+    @NotBlank(message = "Username name cannot be blank")
     private String username;
 
-    @PasswordConstraint
+//    @PasswordConstraint
     private String password;
 
     @NotBlank(message = "First name cannot be blank")
@@ -99,7 +95,15 @@ public class UserDTO {
         return isActive;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
     public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
@@ -117,6 +121,20 @@ public class UserDTO {
 
     public void setRole(UserRoleType role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActive=" + isActive +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
 

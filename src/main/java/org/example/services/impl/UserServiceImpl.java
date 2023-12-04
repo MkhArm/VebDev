@@ -1,13 +1,15 @@
 package org.example.services.impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.example.models.entities.Model;
+import org.example.models.entities.Offer;
+import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.input.UserDTO;
 import org.example.models.entities.User;
 import org.example.models.entities.UserRole;
 import org.example.models.enums.UserRoleType;
 import org.example.repositories.UserRoleRepository;
 import org.example.repositories.UserRepository;
-import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.UserOutputDTO;
 import org.example.services.internal.InternalRoleService;
 import org.example.services.internal.InternalUserService;
@@ -17,6 +19,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.relation.Role;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -106,6 +109,13 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    public UserDTO getUserDTOById(String id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    @Override
     public List<UserDTO> findAll() {
         return userRepository.findAll().stream().map(e -> modelMapper.map(e, UserDTO.class)).collect(Collectors.toList());
     }
@@ -118,6 +128,25 @@ public class UserServiceImpl implements UserService, InternalUserService {
     @Override
     public UserOutputDTO getUserOutputDTOById(String id) {
         return modelMapper.map(userRepository.findById(id), UserOutputDTO.class);
+    }
+
+    @Override
+    public UserDTO editUser(String id, UserDTO userDTO) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        UserRole userRole = userRoleRepository.findByRole(userDTO.getRole())
+                .orElseThrow(() -> new EntityNotFoundException("CarModel not found: " + userDTO.getRole()));
+        existingUser.setRole(userRole);
+        existingUser.setActive(userDTO.getActive());
+        existingUser.setUsername(userDTO.getUsername());
+        existingUser.setLastName(userDTO.getLastName());
+        existingUser.setImageUrl(userDTO.getImageUrl());
+        existingUser.setFirstName(userDTO.getFirstName());
+        existingUser.setPassword(userDTO.getPassword());
+
+        User updatedUser = userRepository.save(existingUser);
+
+        return modelMapper.map(updatedUser, UserDTO.class);
     }
 
 }

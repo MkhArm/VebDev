@@ -3,11 +3,9 @@ package org.example.controllers.view;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import org.example.services.BrandService;
-import org.example.services.ModelService;
-import org.example.services.OfferService;
-import org.example.services.UserService;
+import org.example.services.*;
 import org.example.services.dtos.input.OfferDTO;
+import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.UserOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,8 @@ public class UserViewController {
     private BrandService brandService;
     private ModelService modelService;
     private UserService userService;
+    private UserRoleService userRoleService;
+
     @Autowired
     public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
@@ -46,6 +46,10 @@ public class UserViewController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+    @Autowired
+    public void setUserRoleService(UserRoleService userRoleService) {
+        this.userRoleService = userRoleService;
+    }
 
     @GetMapping("/users")
     public String allUsers(Model model) {
@@ -61,37 +65,52 @@ public class UserViewController {
         return "user-details";
     }
 
+    @GetMapping("/user/add")
+    public String showAddUser(Model model){
+        model.addAttribute("userDto", new UserDTO());
+        model.addAttribute("roles",userRoleService.findAll());
+        return "user-add";
+    }
+
+    @PostMapping("/user/add")
+    public String addUser(@Valid UserDTO userDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        System.out.println(userDTO.toString());
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userDTO", userDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
+            System.out.println(userDTO);
+            return "redirect:/user/add";
+        }
+        userService.createUser(userDTO);
+        return "redirect:/users";
+    }
+
     @GetMapping("/user/edit/{id}")
-    public String editGetOne(@PathVariable String id, Model model) {
-        UserOutputDTO user = userService.getUserOutputDTOById(id);
+    public String showEditOfferPage(@PathVariable("id") String id, Model model) {
+        UserDTO user = userService.getUserDTOById(id);
         model.addAttribute("user", user);
-        model.addAttribute("id", user.getId());
+        model.addAttribute("roles",userRoleService.findAll());
         return "user-edit";
     }
 
-//    @PostMapping("/user/edit/{username}")
-//    public String editPostOne(@Valid UserAdEdDTO newUser, @PathVariable String username, BindingResult bindingResult, RedirectAttributes redirectAttributes, HttpServletResponse response) throws Throwable {
-//        newUser.setId(userService.findByUsername(username).get().getId());
-//        if (newUser.getPassword().equals("")) {
-//            newUser.setPassword(userService.findUserCrud(username).get().getPassword());
-//        } else {
-//            Cookie usernameCookie = new Cookie("username", null);
-//            usernameCookie.setMaxAge(0);
-//            response.addCookie(usernameCookie);
-//            Cookie passwordCookie = new Cookie("password", null);
-//            passwordCookie.setMaxAge(0);
-//            response.addCookie(passwordCookie);
-//            Optional<UserCtrlDTO> user = userService.findByUsername(username);
-//            return "redirect:/";
-//        }
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("user", newUser);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", bindingResult);
-//            return "redirect:/login/edit/{username}";
-//        }
-//        System.out.println(newUser);
-//        userService.create(newUser);
-//        return "redirect:/login";
-//    }
+    @PostMapping("/user/edit/{id}")
+    public String editOffer(@PathVariable("id") String id, @Valid UserDTO userDTO, BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(userDTO.toString());
+            redirectAttributes.addFlashAttribute("userDto", userDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
+            return "redirect:/user/edit/" + id;
+        }
+        System.out.println(userDTO.toString());
+        userService.editUser(id, userDTO);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String showDeleteOfferPage(@PathVariable("id") String id, Model model) {
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
 
 }

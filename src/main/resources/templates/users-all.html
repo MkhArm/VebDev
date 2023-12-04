@@ -4,22 +4,10 @@
 <body>
 <div class="d-flex flex-column min-vh-100">
     <header th:replace="fragments/header"></header>
-
     <div class="container">
-        <h1 class="custom-margin-top">Информация о пользователе</h1>
-
-        <div class="user-container" th:each="user, iterStat : ${users}">
-            <div class="card">
-                <a th:href="@{/user/{id}(id=${user.id})}">
-                    <img class="card-img-top" th:src="${user.imageUrl}" alt="User Image">
-                </a>
-                <div class="card-body">
-                    <p class="card-title" th:text="${user.firstName + ' ' + user.lastName}"></p>
-                    <p class="card-text" th:text="${'Active: ' + user.active}"></p>
-                    <p class="card-text" th:text="${'Role: ' + user.role}"></p>
-                </div>
-            </div>
-        </div>
+        <h1 style="margin-top: 70px; margin-bottom: 50px;" class="custom-margin-top"></h1>
+        <h2>Пользователи:</h2>
+        <div th:replace="fragments/userDetails :: userDetailsFragment"></div>
     </div>
 </div>
 <div th:replace="fragments/footer"></div>
