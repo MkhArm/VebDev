@@ -234,6 +234,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             System.out.println(offerDetailsDTO.toString());
             System.out.println();
         }
+
     }
 }
 

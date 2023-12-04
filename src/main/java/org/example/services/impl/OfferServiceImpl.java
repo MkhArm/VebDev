@@ -9,11 +9,8 @@ import org.example.repositories.ModelRepository;
 import org.example.repositories.OfferRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.OfferService;
-import org.example.services.dtos.input.ModelDTO;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
-import org.example.services.dtos.input.UserDTO;
-import org.example.services.dtos.output.UserOutputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,6 +109,36 @@ public class OfferServiceImpl implements OfferService {
     public List<OfferDetailsDTO> getOfferDetailsByStartYear(int startYear) {
         List<OfferDetailsDTO> offerDetails = offerRepository.findOfferDetailsByStartYear(startYear);
         return offerDetails;
+    }
+
+    @Override
+    @Transactional
+    public OfferDTO editOffer(String id, OfferDTO offerDTO) {
+        Offer existingOffer = offerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
+
+        Model model = modelRepository.findById(offerDTO.getModel_id())
+                .orElseThrow(() -> new EntityNotFoundException("CarModel not found: " + offerDTO.getModel_id()));
+
+        User seller = userRepository.findById(offerDTO.getSeller_id())
+                .orElseThrow(() -> new EntityNotFoundException("User not found: " + offerDTO.getSeller_id()));
+
+        // Обновление полей сущности Offer
+        existingOffer.setModel(model);
+        existingOffer.setSeller(seller);
+        existingOffer.setDescription(offerDTO.getDescription());
+        existingOffer.setEngine(offerDTO.getEngine());
+        existingOffer.setImageUrl(offerDTO.getImageUrl());
+        existingOffer.setMileage(offerDTO.getMileage());
+        existingOffer.setPrice(offerDTO.getPrice());
+        existingOffer.setTransmission(offerDTO.getTransmission());
+        existingOffer.setYear(offerDTO.getYear());
+
+        // Сохранение обновленной сущности
+        Offer updatedOffer = offerRepository.save(existingOffer);
+
+        // Возвращение обновленной сущности в виде DTO
+        return modelMapper.map(updatedOffer, OfferDTO.class);
     }
 
 }

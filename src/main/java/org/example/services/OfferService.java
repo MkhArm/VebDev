@@ -1,5 +1,6 @@
 package org.example.services;
 
+import jakarta.transaction.Transactional;
 import org.example.models.enums.EngineType;
 import org.example.models.enums.TransmissionType;
 import org.example.services.dtos.input.OfferDTO;
@@ -24,6 +25,8 @@ public interface OfferService {
 
     List<OfferDetailsDTO> getOfferDetailsByStartYear(int startYear);
 
+    @Transactional
+    OfferDTO editOffer(String id, OfferDTO offerDTO);
 }
 
 

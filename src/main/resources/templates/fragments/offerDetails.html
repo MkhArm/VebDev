@@ -1,16 +1,20 @@
 <div th:fragment="offerDetailsFragment" xmlns:th="http://www.thymeleaf.org">
-    <div class="offer-container" th:each="offer, iterStat : ${offers}">
-        <div class="card">
-            <a th:href="@{/offer/{id}(id=${offer.id})}">
-                <img class="card-img-top" th:src="${offer.imageUrl}" alt="Car Image">
-            </a>
-            <div class="card-body">
-                <p class="card-title" th:text="${offer.brandName + ' ' + offer.modelName}"></p>
-                <p class="card-text" th:text="${'Price: ' + offer.price}"></p>
-                <p class="card-text" th:text="${'Year: ' + offer.year}"></p>
-                <p class="card-text" th:text="${'Engine: ' + offer.engine}"></p>
-                <p class="card-text" th:text="${'Transmission: ' + offer.transmission}"></p>
-                <p class="card-text" th:text="${'Mileage: ' + offer.mileage}"></p>
+    <div class="container">
+        <div class="row">
+            <div th:each="offer, iterStat : ${offers}" class="col-md-6 col-lg-4">
+                <div class="card mb-4">
+                    <a th:href="@{/offer/{id}(id=${offer.id})}">
+                        <img class="card-img-top" th:src="${offer.imageUrl}" alt="Car Image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${offer.brandName + ' ' + offer.modelName}"></h5>
+                        <p class="card-text" th:text="${'Price: ' + offer.price}"></p>
+                        <p class="card-text" th:text="${'Year: ' + offer.year}"></p>
+                        <p class="card-text" th:text="${'Engine: ' + offer.engine}"></p>
+                        <p class="card-text" th:text="${'Transmission: ' + offer.transmission}"></p>
+                        <p class="card-text" th:text="${'Mileage: ' + offer.mileage}"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

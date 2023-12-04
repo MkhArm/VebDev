@@ -9,20 +9,20 @@
 <div class="container">
     <div class="form-add mt-5">
         <div class="text-center">
-            <h1 class="custom-margin-top">Создать объявление</h1>
+            <h1 class="custom-margin-top">Редактировать объявление</h1>
         </div>
-        <form th:action="@{/add-offer}" th:method="post" th:object="${offerDto}" class="m-md-auto w-50 pb-3">
+        <form th:action="@{/offer/edit/{id}(id=${offer.id})}" th:method="post" th:object="${offer}" class="m-md-auto w-50 pb-3">
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <input th:field="*{description}" th:errorclass="is-invalid" type="text" class="form-control text-center"
-                       id="description" aria-describedby="description" />
+                <input th:field="*{description}" th:value="${offer.description}" th:errorclass="is-invalid" type="text"
+                       class="form-control text-center" id="description" aria-describedby="description"/>
                 <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="engine">Engine Type</label>
-                <select th:field="*{engine}" class="form-control text-center" id="engine">
+                <select th:field="*{engine}" th:value="${offer.engine}" class="form-control text-center" id="engine">
                     <option value="GASOLINE">GASOLINE</option>
                     <option value="DIESEL">DIESEL</option>
                     <option value="ELECTRIC">ELECTRIC</option>
@@ -32,28 +32,29 @@
 
             <div class="mb-3">
                 <label class="form-label" for="imageUrl">Image URL</label>
-                <input th:field="*{imageUrl}" th:errorclass="is-invalid" type="text" class="form-control text-center"
-                       id="imageUrl" aria-describedby="imageUrl" />
+                <input th:field="*{imageUrl}" th:value="${offer.imageUrl}" th:errorclass="is-invalid" type="text"
+                       class="form-control text-center" id="imageUrl" aria-describedby="imageUrl"/>
                 <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="mileage">Mileage</label>
-                <input th:field="*{mileage}" th:errorclass="is-invalid" type="number" class="form-control text-center"
-                       id="mileage" aria-describedby="mileage" />
+                <input th:field="*{mileage}" th:value="${offer.mileage}" th:errorclass="is-invalid" type="number"
+                       class="form-control text-center" id="mileage" aria-describedby="mileage"/>
                 <small th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}" class="text-danger"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="price">Price</label>
-                <input th:field="*{price}" th:errorclass="is-invalid" type="number" class="form-control text-center"
-                       id="price" aria-describedby="price" />
+                <input th:field="*{price}" th:value="${offer.price}" th:errorclass="is-invalid" type="number"
+                       class="form-control text-center" id="price" aria-describedby="price"/>
                 <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></small>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="transmission">Transmission Type</label>
-                <select th:field="*{transmission}" class="form-control text-center" id="transmission">
+                <select th:field="*{transmission}" th:value="${offer.transmission}" class="form-control text-center"
+                        id="transmission">
                     <option value="MANUAL">Manual</option>
                     <option value="AUTOMATIC">Automatic</option>
                 </select>
@@ -61,8 +62,8 @@
 
             <div class="mb-3">
                 <label class="form-label" for="year">Year</label>
-                <input th:field="*{year}" th:errorclass="is-invalid" type="number" class="form-control text-center"
-                       id="year" aria-describedby="year" />
+                <input th:field="*{year}" th:value="${offer.year}" th:errorclass="is-invalid" type="number"
+                       class="form-control text-center" id="year" aria-describedby="year"/>
                 <small th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="text-danger"></small>
             </div>
 
@@ -70,7 +71,9 @@
                 <label for="model-select">Model</label>
                 <select th:field="*{model_id}" class="form-control" id="model-select" name="model">
                     <div th:each="modelDto : ${models}">
-                        <option th:value="${modelDto.id}" th:text="${modelDto.brand_name} + ' ' + ${modelDto.name}"></option>
+                        <option th:value="${modelDto.id}"
+                                th:selected="${modelDto.id eq offer.model_id}"
+                                th:text="${modelDto.brand_name} + ' ' + ${modelDto.name}"></option>
                     </div>
                 </select>
             </div>
@@ -79,12 +82,14 @@
                 <label for="user-select">Seller</label>
                 <select th:field="*{seller_id}" class="form-control" id="user-select" name="user">
                     <div th:each="user : ${users}">
-                        <option th:value="${user.id}" th:text="${user.username}"></option>
+                        <option th:value="${user.id}"
+                                th:selected="${user.id eq offer.seller_id}"
+                                th:text="${user.username}"></option>
                     </div>
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Offer</button>
+            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
         </form>
     </div>
 </div>
