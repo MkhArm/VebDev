@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"></head>
+<head th:replace="~{fragments/head}"></head>
 <body>
 <div class="d-flex flex-column min-vh-100">
-    <header th:replace="fragments/header"></header>
+    <header th:replace="~{fragments/header}"></header>
     <div class="container">
         <h2>Поиск предложения:</h2>
     </div>
 </div>
-<div th:replace="fragments/footer"></div>
+<div th:replace="~{fragments/footer}"></div>
 </body>
 </html>

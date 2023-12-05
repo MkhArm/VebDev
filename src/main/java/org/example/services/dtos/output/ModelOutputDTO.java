@@ -6,8 +6,10 @@ import org.example.services.dtos.baseEntities.BaseEntityDTO;
 
 public class ModelOutputDTO extends BaseEntityDTO{
     public String id;
+
     public String name;
     public ModelCategory category;
+
     public String imageUrl;
     public Integer startYear;
     public Integer endYear;

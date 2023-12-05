@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head"></head>
+<head th:replace="~{fragments/head}"></head>
 <body>
 <div class="d-flex flex-column min-vh-100">
-    <header th:replace="fragments/header"></header>
+    <header th:replace="~{fragments/header}"></header>
     <div class="container">
         <h1 style="margin-top: 70px; margin-bottom: 0px;" class="custom-margin-top">Добро пожаловать в Car Service!</h1>
         <p class="lead">Выберите один из разделов навигации для использования всех возможностей сервиса.</p>
@@ -11,6 +11,6 @@
         <div th:replace="fragments/offerDetails :: offerDetailsFragment"></div>
     </div>
 </div>
-<div th:replace="fragments/footer"></div>
+<div th:replace="~{fragments/footer}"></div>
 </body>
 </html>

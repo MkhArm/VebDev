@@ -2,7 +2,6 @@ package org.example.services.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.example.services.dtos.input.BrandDTO;
 import org.example.services.dtos.input.ModelDTO;
 import org.example.models.entities.Brand;
 import org.example.models.entities.Model;
@@ -87,6 +86,11 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public List<ModelOutputDTO> findAll() {
         return modelRepository.findAll().stream().map(e -> modelMapper.map(e, ModelOutputDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public ModelOutputDTO getModelOutputDTOById(String id) {
+        return modelMapper.map(modelRepository.findById(id), ModelOutputDTO.class);
     }
 
 }

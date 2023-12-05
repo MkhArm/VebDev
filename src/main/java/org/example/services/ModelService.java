@@ -13,6 +13,8 @@ public interface ModelService {
     void deleteCarModel(String id);
 
     List<ModelOutputDTO> findAll();
+
+    ModelOutputDTO getModelOutputDTOById(String id);
 }
 
 
