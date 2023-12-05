@@ -11,6 +11,7 @@ import org.example.repositories.UserRepository;
 import org.example.services.OfferService;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
+import org.example.services.dtos.output.OfferFullDetailsDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,11 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public OfferDetailsDTO getOfferDetailsById(String id) {
         return modelMapper.map(offerRepository.findById(id), OfferDetailsDTO.class);
+    }
+
+    @Override
+    public OfferFullDetailsDTO getOfferFullDetailsById(String id) {
+        return modelMapper.map(offerRepository.findById(id), OfferFullDetailsDTO.class);
     }
 
 //    @Override

@@ -6,6 +6,7 @@ import org.example.models.enums.TransmissionType;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
+import org.example.services.dtos.output.OfferFullDetailsDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,6 +21,8 @@ public interface OfferService {
     List<OfferDetailsDTO> getOfferDetails();
 
     OfferDetailsDTO getOfferDetailsById(String id);
+
+    OfferFullDetailsDTO getOfferFullDetailsById(String id);
 
     List<OfferDetailsDTO> getOfferDetailsByBrandName(String brandName);
 

@@ -8,6 +8,7 @@ import org.example.services.UserService;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
+import org.example.services.dtos.output.OfferFullDetailsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,8 @@ public class OfferViewController {
 
     @GetMapping("/offer/{id}")
     public String offerDetails(@PathVariable("id") String id, Model model){
-        OfferDetailsDTO offer = offerService.getOfferDetailsById(id);
+        OfferFullDetailsDTO offer = offerService.getOfferFullDetailsById(id);
+        System.out.println(offer.toString());
         model.addAttribute("offer",offer);
         return "offer-details";
     }

@@ -17,9 +17,10 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
     private TransmissionType transmission;
     private Integer mileage;
     private String seller_id;
+    private String seller_username;
     private String description;
 
-    public OfferFullDetailsDTO(BigDecimal price, Integer year, String brandName, String modelName, String imageUrl, EngineType engine, TransmissionType transmission, Integer mileage, String seller_id, String description) {
+    public OfferFullDetailsDTO(BigDecimal price, Integer year, String brandName, String modelName, String imageUrl, EngineType engine, TransmissionType transmission, Integer mileage, String seller_id, String seller_username, String description) {
         this.price = price;
         this.year = year;
         this.brandName = brandName;
@@ -29,7 +30,11 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
         this.transmission = transmission;
         this.mileage = mileage;
         this.seller_id = seller_id;
+        this.seller_username = seller_username;
         this.description = description;
+    }
+
+    public OfferFullDetailsDTO() {
     }
 
     public void setPrice(BigDecimal price) {
@@ -64,6 +69,9 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setSeller_username(String seller_username) {
+        this.seller_username = seller_username;
+    }
 
     public BigDecimal getPrice() {
         return price;
@@ -95,10 +103,13 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
     public String getDescription() {
         return description;
     }
+    public String getSeller_username() {
+        return seller_username;
+    }
 
     @Override
     public String toString() {
-        return "OfferDetailsDTO{" +
+        return "OfferFullDetailsDTO{" +
                 "price=" + price +
                 ", year=" + year +
                 ", brandName='" + brandName + '\'' +
@@ -107,6 +118,9 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
                 ", engine=" + engine +
                 ", transmission=" + transmission +
                 ", mileage=" + mileage +
+                ", seller_id='" + seller_id + '\'' +
+                ", seller_username='" + seller_username + '\'' +
+                ", description='" + description + '\'' +
                 ", id='" + id + '\'' +
                 '}';
     }

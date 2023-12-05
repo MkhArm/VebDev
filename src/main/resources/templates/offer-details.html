@@ -16,6 +16,12 @@
                 <p class="card-text" th:text="${'Engine: ' + offer.engine}"></p>
                 <p class="card-text" th:text="${'Transmission: ' + offer.transmission}"></p>
                 <p class="card-text" th:text="${'Mileage: ' + offer.mileage}"></p>
+                <p class="card-text">
+                    <span th:text="'Seller: '"></span>
+                    <a th:href="@{/user/{id}(id=${offer.seller_id})}" th:text="${offer.seller_username}"></a>
+                </p>
+
+                <p class="card-text" th:text="${'Description: ' + offer.description}"></p>
             </div>
         </div>
         <!-- Кнопки Изменить и Удалить -->
