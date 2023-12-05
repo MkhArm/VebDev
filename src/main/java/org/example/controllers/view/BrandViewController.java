@@ -67,25 +67,23 @@ public class BrandViewController {
         return "redirect:/brands";
     }
 
-//    @GetMapping("/brand/add")
-//    public String showAddBrandPage(Model model){
-//        model.addAttribute("OfferDTO", new OfferDTO());
-//        model.addAttribute("models",modelService.findAll());
-//        model.addAttribute("users",userService.findAll());
-//        return "offer-add";
-//    }
-//
-//    @PostMapping("/brand/add")
-//    public String addBrand(@Valid OfferDTO offerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-//
-//        if (bindingResult.hasErrors()) {
-//            redirectAttributes.addFlashAttribute("offerDto", offerDto);
-//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDto", bindingResult);
-//            System.out.println(offerDto);
-//            return "redirect:/offer/add";
-//        }
-//        offerService.createOffer(offerDto);
-//        return "redirect:/home";
-//    }
+    @GetMapping("/brand/add")
+    public String showAddBrandPage(Model model){
+        model.addAttribute("BrandDTO", new BrandDTO());
+        return "brand-add";
+    }
+
+    @PostMapping("/brand/add")
+    public String addBrand(@Valid BrandDTO brandDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("brandDto", brandDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.brandDto", bindingResult);
+            System.out.println(brandDTO);
+            return "redirect:/brand/add";
+        }
+        brandService.createCarBrand(brandDTO.getName());
+        return "redirect:/brands";
+    }
 }
 

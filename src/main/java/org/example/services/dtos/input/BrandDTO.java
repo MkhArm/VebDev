@@ -1,5 +1,7 @@
 package org.example.services.dtos.input;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class BrandDTO{
 
     private String id;
@@ -21,7 +23,7 @@ public class BrandDTO{
     public void setId(String id) {
         this.id = id;
     }
-
+    @NotBlank(message = "Brand name cannot be blank")
     public String getName() {
         return name;
     }
