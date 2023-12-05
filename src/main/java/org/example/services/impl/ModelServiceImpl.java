@@ -84,6 +84,12 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Transactional
+    public void deleteCarModelByBrandId(String id) {
+        modelRepository.deleteByBrand_Id(id);
+    }
+
+    @Override
     public List<ModelOutputDTO> findAll() {
         return modelRepository.findAll().stream().map(e -> modelMapper.map(e, ModelOutputDTO.class)).collect(Collectors.toList());
     }

@@ -51,6 +51,11 @@ public class UserViewController {
         this.userRoleService = userRoleService;
     }
 
+    @ModelAttribute("userDto")
+    public UserDTO initCompany() {
+        return new UserDTO();
+    }
+
     @GetMapping("/users")
     public String allUsers(Model model) {
         List<UserOutputDTO> users = userService.getUserOutputDTO();
@@ -67,7 +72,7 @@ public class UserViewController {
 
     @GetMapping("/user/add")
     public String showAddUser(Model model){
-        model.addAttribute("userDto", new UserDTO());
+        model.addAttribute("UserDTO", new UserDTO());
         model.addAttribute("roles",userRoleService.findAll());
         return "user-add";
     }
@@ -76,8 +81,8 @@ public class UserViewController {
     public String addUser(@Valid UserDTO userDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         System.out.println(userDTO.toString());
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userDTO", userDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("userDto", userDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDto", bindingResult);
             System.out.println(userDTO);
             return "redirect:/user/add";
         }
@@ -86,7 +91,7 @@ public class UserViewController {
     }
 
     @GetMapping("/user/edit/{id}")
-    public String showEditOfferPage(@PathVariable("id") String id, Model model) {
+    public String editUser(@PathVariable("id") String id, Model model) {
         UserDTO user = userService.getUserDTOById(id);
         model.addAttribute("user", user);
         model.addAttribute("roles",userRoleService.findAll());
@@ -94,7 +99,7 @@ public class UserViewController {
     }
 
     @PostMapping("/user/edit/{id}")
-    public String editOffer(@PathVariable("id") String id, @Valid UserDTO userDTO, BindingResult bindingResult,
+    public String editUser(@PathVariable("id") String id, @Valid UserDTO userDTO, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             System.out.println(userDTO.toString());
@@ -108,7 +113,7 @@ public class UserViewController {
     }
 
     @GetMapping("/user/delete/{id}")
-    public String showDeleteOfferPage(@PathVariable("id") String id, Model model) {
+    public String deleteUser(@PathVariable("id") String id, Model model) {
         userService.deleteUser(id);
         return "redirect:/users";
     }

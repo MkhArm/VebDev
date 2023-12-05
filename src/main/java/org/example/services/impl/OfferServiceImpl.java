@@ -75,6 +75,18 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
+    @Transactional
+    public void deleteOfferByModelId(String id) {
+        offerRepository.deleteByModel_Id(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteOfferByModelBrandId(String id) {
+        offerRepository.deleteByModel_Brand_Id(id);
+    }
+
+    @Override
     public List<OfferDetailsDTO> getOfferDetails() {
         return offerRepository.findAll().stream().map(e -> modelMapper.map(e, OfferDetailsDTO.class)).collect(Collectors.toList());
     }

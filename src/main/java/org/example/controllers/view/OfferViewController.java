@@ -41,17 +41,14 @@ public class OfferViewController {
         this.userService = userService;
     }
 
+    @ModelAttribute("offerDto")
+    public OfferDTO initCompany() {
+        return new OfferDTO();
+    }
+
     @GetMapping("/offer/search")
     public String showSearchOfferPage(Model model) {
         return "offers-search";
-    }
-
-    @GetMapping("/offer/add")
-    public String showAddOfferPage(Model model){
-        model.addAttribute("OfferDTO", new OfferDTO());
-        model.addAttribute("models",modelService.findAll());
-        model.addAttribute("users",userService.findAll());
-        return "offer-add";
     }
 
     @GetMapping("/offer/{id}")
@@ -62,9 +59,12 @@ public class OfferViewController {
         return "offer-details";
     }
 
-    @ModelAttribute("offerDto")
-    public OfferDTO initCompany() {
-        return new OfferDTO();
+    @GetMapping("/offer/add")
+    public String showAddOfferPage(Model model){
+        model.addAttribute("OfferDTO", new OfferDTO());
+        model.addAttribute("models",modelService.findAll());
+        model.addAttribute("users",userService.findAll());
+        return "offer-add";
     }
 
     @PostMapping("/offer/add")

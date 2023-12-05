@@ -25,4 +25,8 @@ public interface OfferRepository extends JpaRepository<Offer, String> {
     @Query("SELECT new org.example.services.dtos.output.OfferDetailsDTO(o.price, o.year, o.model.brand.name, o.model.name, o.imageUrl, o.engine, o.transmission, o.mileage) FROM Offer o WHERE o.year >= :startYear")
     List<OfferDetailsDTO> findOfferDetailsByStartYear(int startYear);
 
+    void deleteByModel_Id(String modelId);
+
+    void deleteByModel_Brand_Id(String brandId);
+
 }

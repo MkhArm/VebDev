@@ -18,6 +18,12 @@ public interface OfferService {
     List<OfferDTO> getAllOffers();
     void deleteOffer(String id);
 
+    @Transactional
+    void deleteOfferByModelId(String id);
+
+    @Transactional
+    void deleteOfferByModelBrandId(String id);
+
     List<OfferDetailsDTO> getOfferDetails();
 
     OfferDetailsDTO getOfferDetailsById(String id);

@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ModelRepository extends JpaRepository<Model, String> {
+
+    void deleteByBrand_Id(String brandId);
+
 }

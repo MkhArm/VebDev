@@ -7,7 +7,6 @@ import org.example.services.OfferService;
 import org.example.services.dtos.input.BrandDTO;
 import org.example.services.dtos.input.ModelDTO;
 import org.example.services.dtos.input.OfferDTO;
-import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.ModelOutputDTO;
 import org.example.services.dtos.output.UserOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
-public class ModelViewCiontroller {
+public class BrandViewController {
 
     private BrandService brandService;
     private ModelService modelService;
@@ -41,17 +40,16 @@ public class ModelViewCiontroller {
         this.offerService = offerService;
     }
 
-    @ModelAttribute("modelDto")
-    public ModelDTO initCompany() {
-        return new ModelDTO();
+    @ModelAttribute("brandDto")
+    public BrandDTO initCompany() {
+        return new BrandDTO();
     }
 
-
-    @GetMapping("/models")
+    @GetMapping("/brands")
     public String home(Model model) {
-        List<ModelOutputDTO> models = modelService.findAll();
-        model.addAttribute("models", models);
-        return "models-all";
+        List<BrandDTO> brands = brandService.getAllCarBrands();
+        model.addAttribute("brands", brands);
+        return "brands-all";
     }
 
 //    @GetMapping("/model/{id}")
@@ -61,31 +59,33 @@ public class ModelViewCiontroller {
 //        return "model-details";
 //    }
 
-    @GetMapping("/model/delete/{id}")
-    public String deleteModel(@PathVariable("id") String id, Model model) {
-        offerService.deleteOfferByModelId(id);
-        modelService.deleteCarModel(id);
-        return "redirect:/models";
+    @GetMapping("/brand/delete/{id}")
+    public String deleteBrand(@PathVariable("id") String id, Model model) {
+        offerService.deleteOfferByModelBrandId(id);
+        modelService.deleteCarModelByBrandId(id);
+        brandService.deleteCarBrand(id);
+        return "redirect:/brands";
     }
 
-    @GetMapping("/model/add")
-    public String showAddModelPage(Model model){
-        model.addAttribute("ModelDTO", new ModelDTO());
-        model.addAttribute("brands", brandService.getAllCarBrands());
-        return "model-add";
-    }
-
-    @PostMapping("/model/add")
-    public String addModel(@Valid ModelDTO modelDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("modelDto", modelDto);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modelDto", bindingResult);
-            System.out.println(modelDto);
-            return "redirect:/model/add";
-        }
-        modelService.createCarModel(modelDto);
-        return "redirect:/models";
-    }
+//    @GetMapping("/brand/add")
+//    public String showAddBrandPage(Model model){
+//        model.addAttribute("OfferDTO", new OfferDTO());
+//        model.addAttribute("models",modelService.findAll());
+//        model.addAttribute("users",userService.findAll());
+//        return "offer-add";
+//    }
+//
+//    @PostMapping("/brand/add")
+//    public String addBrand(@Valid OfferDTO offerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+//
+//        if (bindingResult.hasErrors()) {
+//            redirectAttributes.addFlashAttribute("offerDto", offerDto);
+//            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDto", bindingResult);
+//            System.out.println(offerDto);
+//            return "redirect:/offer/add";
+//        }
+//        offerService.createOffer(offerDto);
+//        return "redirect:/home";
+//    }
 }
 

@@ -1,5 +1,6 @@
 package org.example.services;
 
+import jakarta.transaction.Transactional;
 import org.example.services.dtos.input.ModelDTO;
 import org.example.services.dtos.output.ModelOutputDTO;
 
@@ -11,6 +12,9 @@ public interface ModelService {
     ModelDTO getCarModelById(String id);
     List<ModelDTO> getAllCarModels();
     void deleteCarModel(String id);
+
+    @Transactional
+    void deleteCarModelByBrandId(String id);
 
     List<ModelOutputDTO> findAll();
 
