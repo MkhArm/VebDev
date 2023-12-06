@@ -104,7 +104,7 @@ public class UserViewController {
         if (bindingResult.hasErrors()) {
             System.out.println(userDTO.toString());
             redirectAttributes.addFlashAttribute("userDto", userDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userDto", bindingResult);
             return "redirect:/user/edit/" + id;
         }
         System.out.println(userDTO.toString());
