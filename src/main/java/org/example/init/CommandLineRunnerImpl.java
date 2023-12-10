@@ -79,7 +79,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         UserRoleDTO userRole = userRoleService.createUserRole(new UserRoleDTO(UserRoleType.USER));
         UserRoleDTO adminRole = userRoleService.createUserRole(new UserRoleDTO(UserRoleType.ADMIN));
 
-        String user1 = userService.createUser(new UserDTO("username3", "password3", "User3", "Doe", true, "/images/users/ladyBag.jpg")).getId();
+        String user1 = userService.createUser(new UserDTO("user", "user", "User3", "Doe", true, "/images/users/ladyBag.jpg")).getId();
         String user2 = userService.createUser(new UserDTO("username4", "password4", "User4", "Doe", true, "/images/users/mrPs.jpg")).getId();
         String user3 = userService.createUser(new UserDTO("Never", "123456", "Rick", "Astley", true, "/images/users/rickAstley.jpg")).getId();
         String user4 = userService.createUser(new UserDTO("username6", "password6", "User6", "Doe", false, "userImageUrl6")).getId();
@@ -97,7 +97,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //        String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
 //        String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();
 //        String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
-        String admin = userService.createUser(new UserDTO("admin", "adminPass", "Admin", "Admin", true, "adminImageUrl", UserRoleType.ADMIN)).getId();
+        String admin = userService.createUser(new UserDTO("admin", "admin", "Admin", "Admin", true, "adminImageUrl", UserRoleType.ADMIN)).getId();
 
         OfferDTO offerDTO1 = offerService.createOffer(new OfferDTO("Все автомобили, представленные в продаже, проходят диагностику по всем параметрам, с результатами диагностики Вы можете ознакомиться при осмотре автомобиля."
                 , EngineType.GASOLINE, "/images/offers/ToyotaCamry2019.png", 81341, new BigDecimal("2399000.00"), TransmissionType.AUTOMATIC, 2019, model1, user1));

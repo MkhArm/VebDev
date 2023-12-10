@@ -16,6 +16,7 @@ import org.example.services.internal.InternalUserService;
 import org.example.services.UserService;
 import org.example.services.exceptions.UserNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,12 +32,14 @@ public class UserServiceImpl implements UserService, InternalUserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final InternalRoleService internalRoleService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRoleRepository userRoleRepository, UserRepository userRepository, ModelMapper modelMapper, InternalRoleService internalRoleService) {
+    public UserServiceImpl(UserRoleRepository userRoleRepository, UserRepository userRepository, ModelMapper modelMapper, InternalRoleService internalRoleService, PasswordEncoder passwordEncoder) {
         this.userRoleRepository = userRoleRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.internalRoleService = internalRoleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
         UserRole userRole = userRoleRepository.findByRole(userDTO.getRole())
                 .orElseThrow(() -> new EntityNotFoundException("User role not found: " + userDTO.getRole()));
         user.setRole(userRole);
-
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User savedUser = userRepository.save(user);
         return modelMapper.map(savedUser, UserDTO.class);
     }
