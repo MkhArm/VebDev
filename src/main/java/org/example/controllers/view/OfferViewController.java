@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 @Controller
 public class OfferViewController {
     private OfferService offerService;
@@ -52,10 +54,12 @@ public class OfferViewController {
     }
 
     @GetMapping("/offer/view/{id}")
-    public String offerDetails(@PathVariable("id") String id, Model model){
+    public String offerDetails(@PathVariable("id") String id, Model model, Principal principal){
         OfferFullDetailsDTO offer = offerService.getOfferFullDetailsById(id);
         System.out.println(offer.toString());
         model.addAttribute("offer",offer);
+        String currentUserId = principal != null ? userService.getUserByUsername(principal.getName()).getId() : null;
+        model.addAttribute("currentUserId",currentUserId);
         return "offer-details";
     }
 
