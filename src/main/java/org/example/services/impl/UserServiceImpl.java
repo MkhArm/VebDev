@@ -19,6 +19,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import javax.management.relation.Role;
 import java.util.List;
@@ -26,6 +29,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class UserServiceImpl implements UserService, InternalUserService {
 
     private final UserRoleRepository userRoleRepository;
@@ -44,6 +48,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "users", allEntries = true)
     public UserDTO createUser(UserDTO userDTO) {
         User user = modelMapper.map(userDTO, User.class);
 
@@ -56,6 +61,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    @Cacheable("users")
     public List<UserDTO> getAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
@@ -82,11 +88,13 @@ public class UserServiceImpl implements UserService, InternalUserService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = {"users", "offers"}, allEntries = true)
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
 
     @Override
+    @Cacheable("users")
     public List<UserDTO> findUsersByRole(UserRoleType roleType) {
         List<User> users = userRepository.findByRole_Role(roleType);
         List<UserDTO> userDTOs = users.stream()
@@ -96,6 +104,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    @Cacheable("users")
     public UserDTO getUserByUsername(String username) {
         Optional user = userRepository.findByUsername(username);
         if (user == null) {
@@ -105,6 +114,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    @Cacheable("users")
     public User getUserById(String userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
@@ -112,6 +122,7 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    @Cacheable("users")
     public UserDTO getUserDTOById(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -119,21 +130,25 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
+    @Cacheable("users")
     public List<UserDTO> findAll() {
         return userRepository.findAll().stream().map(e -> modelMapper.map(e, UserDTO.class)).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("users")
     public List<UserOutputDTO> getUserOutputDTO() {
         return userRepository.findAll().stream().map(e -> modelMapper.map(e, UserOutputDTO.class)).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("users")
     public UserOutputDTO getUserOutputDTOById(String id) {
         return modelMapper.map(userRepository.findById(id), UserOutputDTO.class);
     }
 
     @Override
+    @CacheEvict(cacheNames = "users", allEntries = true)
     public UserDTO editUser(String id, UserDTO userDTO) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));

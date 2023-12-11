@@ -14,8 +14,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.example.util.ValidationUtil;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 @Service
+@EnableCaching
 public class BrandServiceImpl implements BrandService {
     private BrandRepository brandRepository;
     private final ValidationUtil validationUtil;
@@ -29,6 +33,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "brands", allEntries = true)
     public BrandDTO createCarBrand(String carBrandName) {
 
         BrandDTO brandDTO = new BrandDTO();
@@ -54,6 +59,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Cacheable("brands")
     public BrandDTO getCarBrandById(String id) {
         Brand brand = brandRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Car brand not found: " + id));
@@ -61,6 +67,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Cacheable("brands")
     public List<BrandDTO> getAllCarBrands() {
         List<Brand> brands = brandRepository.findAll();
         return brands.stream()
@@ -70,6 +77,7 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = {"brands", "models", "offers"}, allEntries = true)
     public void deleteCarBrand(String id) {
         brandRepository.deleteById(id);
     }

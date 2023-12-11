@@ -88,15 +88,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         String user7 = userService.createUser(new UserDTO("username9", "password9", "User9", "Doe", true, "userImageUrl9")).getId();
         String user8 = userService.createUser(new UserDTO("username10", "password10", "User10", "Doe", true, "userImageUrl10")).getId();
         String user9 = userService.createUser(new UserDTO("username11", "password11", "User11", "Doe", false, "userImageUrl11")).getId();
-//        String user10 = userService.createUser(new UserDTO("username12", "password12", "User12", "Doe", true, "userImageUrl12")).getId();
-//        String user11 = userService.createUser(new UserDTO("username13", "password13", "User13", "Doe", true, "userImageUrl13")).getId();
-//        String user12 = userService.createUser(new UserDTO("username14", "password14", "User14", "Doe", true, "userImageUrl14")).getId();
-//        String user13 = userService.createUser(new UserDTO("username15", "password15", "User15", "Doe", true, "userImageUrl15")).getId();
-//        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", false, "userImageUrl16")).getId();
-//        String user15 = userService.createUser(new UserDTO("username17", "password17", "User17", "Doe", true, "userImageUrl17")).getId();
-//        String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
-//        String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();
-//        String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
+        String user10 = userService.createUser(new UserDTO("username12", "password12", "User12", "Doe", true, "userImageUrl12")).getId();
+        String user11 = userService.createUser(new UserDTO("username13", "password13", "User13", "Doe", true, "userImageUrl13")).getId();
+        String user12 = userService.createUser(new UserDTO("username14", "password14", "User14", "Doe", true, "userImageUrl14")).getId();
+        String user13 = userService.createUser(new UserDTO("username15", "password15", "User15", "Doe", true, "userImageUrl15")).getId();
+        String user14 = userService.createUser(new UserDTO("username16", "password16", "User16", "Doe", false, "userImageUrl16")).getId();
+        String user15 = userService.createUser(new UserDTO("username17", "password17", "User17", "Doe", true, "userImageUrl17")).getId();
+        String user16 = userService.createUser(new UserDTO("username18", "password18", "User18", "Doe", true, "userImageUrl18")).getId();
+        String user17 = userService.createUser(new UserDTO("username19", "password19", "User19", "Doe", true, "userImageUrl19")).getId();
+        String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
         String admin = userService.createUser(new UserDTO("admin", "admin", "Admin", "Admin", true, "adminImageUrl", UserRoleType.ADMIN)).getId();
 
         OfferDTO offerDTO1 = offerService.createOffer(new OfferDTO("Все автомобили, представленные в продаже, проходят диагностику по всем параметрам, с результатами диагностики Вы можете ознакомиться при осмотре автомобиля."
@@ -109,19 +109,19 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         OfferDTO offerDTO5 = offerService.createOffer(new OfferDTO("Description5", EngineType.DIESEL, "offerImageUrl5", 62000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2018, model5, user4));
         OfferDTO offerDTO6 = offerService.createOffer(new OfferDTO("Description6", EngineType.GASOLINE, "offerImageUrl6", 59000, new BigDecimal("11000.00"), TransmissionType.AUTOMATIC, 2016, model6, user5));
         OfferDTO offerDTO7 = offerService.createOffer(new OfferDTO("Description7", EngineType.DIESEL, "offerImageUrl7", 68000, new BigDecimal("16000.00"), TransmissionType.MANUAL, 2015, model7, user6));
-//        OfferDTO offerDTO8 = offerService.createOffer(new OfferDTO("Description8", EngineType.GASOLINE, "offerImageUrl8", 51000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2013, model8, user7));
-//        OfferDTO offerDTO9 = offerService.createOffer(new OfferDTO("Description9", EngineType.DIESEL, "offerImageUrl9", 63000, new BigDecimal("15000.00"), TransmissionType.MANUAL, 2012, model9, user8));
-//        OfferDTO offerDTO10 = offerService.createOffer(new OfferDTO("Description10", EngineType.GASOLINE, "offerImageUrl10", 57000, new BigDecimal("11500.00"), TransmissionType.AUTOMATIC, 2010, model10, user9));
-//        OfferDTO offerDTO11 = offerService.createOffer(new OfferDTO("Description11", EngineType.DIESEL, "offerImageUrl11", 61000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2008, model11, user10));
-//        OfferDTO offerDTO12 = offerService.createOffer(new OfferDTO("Description12", EngineType.GASOLINE, "offerImageUrl12", 54000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2006, model12, user11));
-//        OfferDTO offerDTO13 = offerService.createOffer(new OfferDTO("Description13", EngineType.DIESEL, "offerImageUrl13", 67000, new BigDecimal("16000.00"), TransmissionType.MANUAL, 2004, model13, user12));
-//        OfferDTO offerDTO14 = offerService.createOffer(new OfferDTO("Description14", EngineType.GASOLINE, "offerImageUrl14", 52000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 2002, model14, user13));
-//        OfferDTO offerDTO15 = offerService.createOffer(new OfferDTO("Description15", EngineType.DIESEL, "offerImageUrl15", 65000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2000, model15, user14));
-//        OfferDTO offerDTO16 = offerService.createOffer(new OfferDTO("Description16", EngineType.GASOLINE, "offerImageUrl16", 53000, new BigDecimal("11000.00"), TransmissionType.AUTOMATIC, 1998, model16, user15));
-//        OfferDTO offerDTO17 = offerService.createOffer(new OfferDTO("Description17", EngineType.DIESEL, "offerImageUrl17", 66000, new BigDecimal("16500.00"), TransmissionType.MANUAL, 1996, model17, user16));
-//        OfferDTO offerDTO18 = offerService.createOffer(new OfferDTO("Description18", EngineType.GASOLINE, "offerImageUrl18", 56000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 1994, model18, user17));
-//        OfferDTO offerDTO19 = offerService.createOffer(new OfferDTO("Description19", EngineType.DIESEL, "offerImageUrl19", 64000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 1992, model19, user18));
-//        OfferDTO offerDTO20 = offerService.createOffer(new OfferDTO("Description20", EngineType.GASOLINE, "offerImageUrl20", 55000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 1990, model20, admin));
+        OfferDTO offerDTO8 = offerService.createOffer(new OfferDTO("Description8", EngineType.GASOLINE, "offerImageUrl8", 51000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2013, model8, user7));
+        OfferDTO offerDTO9 = offerService.createOffer(new OfferDTO("Description9", EngineType.DIESEL, "offerImageUrl9", 63000, new BigDecimal("15000.00"), TransmissionType.MANUAL, 2012, model9, user8));
+        OfferDTO offerDTO10 = offerService.createOffer(new OfferDTO("Description10", EngineType.GASOLINE, "offerImageUrl10", 57000, new BigDecimal("11500.00"), TransmissionType.AUTOMATIC, 2010, model10, user9));
+        OfferDTO offerDTO11 = offerService.createOffer(new OfferDTO("Description11", EngineType.DIESEL, "offerImageUrl11", 61000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2008, model11, user10));
+        OfferDTO offerDTO12 = offerService.createOffer(new OfferDTO("Description12", EngineType.GASOLINE, "offerImageUrl12", 54000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2006, model12, user11));
+        OfferDTO offerDTO13 = offerService.createOffer(new OfferDTO("Description13", EngineType.DIESEL, "offerImageUrl13", 67000, new BigDecimal("16000.00"), TransmissionType.MANUAL, 2004, model13, user12));
+        OfferDTO offerDTO14 = offerService.createOffer(new OfferDTO("Description14", EngineType.GASOLINE, "offerImageUrl14", 52000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 2002, model14, user13));
+        OfferDTO offerDTO15 = offerService.createOffer(new OfferDTO("Description15", EngineType.DIESEL, "offerImageUrl15", 65000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 2000, model15, user14));
+        OfferDTO offerDTO16 = offerService.createOffer(new OfferDTO("Description16", EngineType.GASOLINE, "offerImageUrl16", 53000, new BigDecimal("11000.00"), TransmissionType.AUTOMATIC, 1998, model16, user15));
+        OfferDTO offerDTO17 = offerService.createOffer(new OfferDTO("Description17", EngineType.DIESEL, "offerImageUrl17", 66000, new BigDecimal("16500.00"), TransmissionType.MANUAL, 1996, model17, user16));
+        OfferDTO offerDTO18 = offerService.createOffer(new OfferDTO("Description18", EngineType.GASOLINE, "offerImageUrl18", 56000, new BigDecimal("10500.00"), TransmissionType.AUTOMATIC, 1994, model18, user17));
+        OfferDTO offerDTO19 = offerService.createOffer(new OfferDTO("Description19", EngineType.DIESEL, "offerImageUrl19", 64000, new BigDecimal("15500.00"), TransmissionType.MANUAL, 1992, model19, user18));
+        OfferDTO offerDTO20 = offerService.createOffer(new OfferDTO("Description20", EngineType.GASOLINE, "offerImageUrl20", 55000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 1990, model20, admin));
 
     }
 
@@ -176,7 +176,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         // Обновление User
         readUser.setLastName("Gosling");
-        userService.updateUser(readUser);
+//        userService.updateUser(readUser);
         System.out.println("Обновлён пользователь");
 
 //        // Удаление UserRole

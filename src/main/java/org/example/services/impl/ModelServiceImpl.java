@@ -13,11 +13,15 @@ import org.example.util.ValidationUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class ModelServiceImpl implements ModelService {
     private final BrandRepository brandRepository;
     private final ModelRepository modelRepository;
@@ -34,6 +38,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "models", allEntries = true)
     public ModelDTO createCarModel(ModelDTO modelDTO) {
 
         Brand brand = brandRepository.findById(modelDTO.getBrand_id())
@@ -63,6 +68,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Cacheable("models")
     public ModelDTO getCarModelById(String id) {
         Model model = modelRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Car model not found: " + id));
@@ -70,6 +76,7 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    @Cacheable("models")
     public List<ModelDTO> getAllCarModels() {
         List<Model> models = modelRepository.findAll();
         return models.stream()
@@ -79,22 +86,26 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = {"models", "offers"}, allEntries = true)
     public void deleteCarModel(String id) {
         modelRepository.deleteById(id);
     }
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = {"models", "offers"}, allEntries = true)
     public void deleteCarModelByBrandId(String id) {
         modelRepository.deleteByBrand_Id(id);
     }
 
     @Override
+    @Cacheable("models")
     public List<ModelOutputDTO> findAll() {
         return modelRepository.findAll().stream().map(e -> modelMapper.map(e, ModelOutputDTO.class)).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("models")
     public ModelOutputDTO getModelOutputDTOById(String id) {
         return modelMapper.map(modelRepository.findById(id), ModelOutputDTO.class);
     }

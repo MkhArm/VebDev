@@ -15,11 +15,15 @@ import org.example.services.dtos.output.OfferFullDetailsDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@EnableCaching
 public class OfferServiceImpl implements OfferService {
     private final ModelRepository modelRepository;
     private final UserRepository userRepository;
@@ -36,6 +40,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "offers", allEntries = true)
     public OfferDTO createOffer(OfferDTO offerDTO) {
 
         Model model = modelRepository.findById(offerDTO.getModel_id())
@@ -54,6 +59,7 @@ public class OfferServiceImpl implements OfferService {
 
 
     @Override
+    @Cacheable("offers")
     public OfferDTO getOfferById(String id) {
         Offer offer = offerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
@@ -61,6 +67,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
+    @Cacheable("offers")
     public List<OfferDTO> getAllOffers() {
         List<Offer> offers = offerRepository.findAll();
         return offers.stream()
@@ -70,33 +77,39 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOffer(String id) {
         offerRepository.deleteById(id);
     }
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOfferByModelId(String id) {
         offerRepository.deleteByModel_Id(id);
     }
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOfferByModelBrandId(String id) {
         offerRepository.deleteByModel_Brand_Id(id);
     }
 
     @Override
+    @Cacheable("offers")
     public List<OfferDetailsDTO> getOfferDetails() {
         return offerRepository.findAll().stream().map(e -> modelMapper.map(e, OfferDetailsDTO.class)).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("offers")
     public OfferDetailsDTO getOfferDetailsById(String id) {
         return modelMapper.map(offerRepository.findById(id), OfferDetailsDTO.class);
     }
 
     @Override
+    @Cacheable("offers")
     public OfferFullDetailsDTO getOfferFullDetailsById(String id) {
         return modelMapper.map(offerRepository.findById(id), OfferFullDetailsDTO.class);
     }
@@ -118,12 +131,13 @@ public class OfferServiceImpl implements OfferService {
 //                .collect(Collectors.toList());
 //        return offerDTOs;
 //    }
-
+    @Cacheable("offers")
     public List<OfferDetailsDTO> getOfferDetailsByBrandName(String brandName) {
         List<OfferDetailsDTO> offerDetails = offerRepository.findOfferDetailsByBrandName(brandName);
         return offerDetails;
     }
 
+    @Cacheable("offers")
     public List<OfferDetailsDTO> getOfferDetailsByStartYear(int startYear) {
         List<OfferDetailsDTO> offerDetails = offerRepository.findOfferDetailsByStartYear(startYear);
         return offerDetails;
@@ -131,6 +145,7 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     @Transactional
+    @CacheEvict(cacheNames = "offers", allEntries = true)
     public OfferDTO editOffer(String id, OfferDTO offerDTO) {
         Offer existingOffer = offerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
