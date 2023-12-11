@@ -51,7 +51,7 @@ public class OfferViewController {
         return "offers-search";
     }
 
-    @GetMapping("/offer/{id}")
+    @GetMapping("/offer/view/{id}")
     public String offerDetails(@PathVariable("id") String id, Model model){
         OfferFullDetailsDTO offer = offerService.getOfferFullDetailsById(id);
         System.out.println(offer.toString());

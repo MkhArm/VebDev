@@ -36,7 +36,7 @@ public class UserRegistrationDto {
         return lastName;
     }
 
-    public void setLastName(String email) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 

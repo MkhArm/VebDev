@@ -3,7 +3,7 @@
         <div class="row">
             <div th:each="offer, iterStat : ${offers}" class="col-md-6 col-lg-4">
                 <div class="card mb-4">
-                    <a th:href="@{/offer/{id}(id=${offer.id})}">
+                    <a th:href="@{/offer/view/{id}(id=${offer.id})}">
                         <img class="card-img-top" th:src="${offer.imageUrl}" alt="Car Image">
                     </a>
                     <div class="card-body">
