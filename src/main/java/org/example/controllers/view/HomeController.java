@@ -7,8 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import java.util.List;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 @Controller
+@EnableCaching
 public class HomeController {
 
     private OfferService offerService;
@@ -19,6 +23,7 @@ public class HomeController {
     }
 
     @GetMapping("/home")
+    @Cacheable("offers")
     public String home(Model model) {
         List<OfferDetailsDTO> offers = offerService.getOfferDetails();
         model.addAttribute("offers", offers);

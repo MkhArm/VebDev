@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@EnableCaching
 public class UserViewController {
 
     private OfferService offerService;
@@ -57,6 +61,7 @@ public class UserViewController {
     }
 
     @GetMapping("/users")
+    @Cacheable("users")
     public String allUsers(Model model) {
         List<UserOutputDTO> users = userService.getUserOutputDTO();
         model.addAttribute("users", users);
