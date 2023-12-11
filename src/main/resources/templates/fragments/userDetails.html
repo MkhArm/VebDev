@@ -3,7 +3,7 @@
         <div class="row">
             <div th:each="user, iterStat : ${users}" class="col-md-6 col-lg-4">
                 <div class="card mb-4">
-                    <a th:href="@{/user/{id}(id=${user.id})}">
+                    <a th:href="@{/user/view/{id}(id=${user.id})}">
                         <img class="card-img-top" th:src="${user.imageUrl}" alt="User Image">
                     </a>
                     <div class="card-body">

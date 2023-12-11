@@ -63,7 +63,7 @@ public class UserViewController {
         return "users-all";
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user/view/{id}")
     public String userDetails(@PathVariable("id") String id, Model model){
         UserOutputDTO user = userService.getUserOutputDTOById(id);
         model.addAttribute("user",user);

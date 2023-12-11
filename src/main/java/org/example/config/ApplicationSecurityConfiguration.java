@@ -35,7 +35,7 @@ public class ApplicationSecurityConfiguration {
                 .authorizeHttpRequests(
                         authorizeHttpRequests ->
                                 authorizeHttpRequests
-                                        .requestMatchers("/home", "/offer/view/*").permitAll()
+                                        .requestMatchers("/home", "/offer/view/*", "/user/view/*").permitAll()
                                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                         .requestMatchers("/sign/in", "/sign/up", "/sign/in/error").permitAll()
                                         .requestMatchers("/user/profile", "/offer/add", "/offer/edit/*", "/offers", "/sign/out").authenticated()
