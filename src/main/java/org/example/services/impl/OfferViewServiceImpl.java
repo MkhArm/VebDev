@@ -24,7 +24,7 @@ public class OfferViewServiceImpl implements OfferViewService {
 
     // Вызывается каждые 5 секунд
     @Override
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 5000) // fixedRate / 1000 миллисекунд = fixedRate секунд
     public void updateOfferViewsPeriodically() {
         // Получение данных из кэша
         List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();

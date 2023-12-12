@@ -138,7 +138,12 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createData();
+
+
+        createData(); // надо закомментить для показа реализации загрузки в кэш из базы
+
+
+
 //
 //        // Создание и чтение CarBrand
 //        BrandDTO carBrandDTO = brandService.createCarBrand("AAAAAAAAAA");
