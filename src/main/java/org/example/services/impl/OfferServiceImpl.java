@@ -4,11 +4,14 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.example.models.entities.Model;
 import org.example.models.entities.Offer;
+import org.example.models.entities.OfferView;
 import org.example.models.entities.User;
 import org.example.repositories.ModelRepository;
 import org.example.repositories.OfferRepository;
+import org.example.repositories.OfferViewRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.OfferService;
+import org.example.services.OfferViewService;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;
@@ -29,13 +32,15 @@ public class OfferServiceImpl implements OfferService {
     private final UserRepository userRepository;
     private final OfferRepository offerRepository;
     private final ModelMapper modelMapper;
+    private final OfferViewRepository offerViewRepository;
 
     @Autowired
-    public OfferServiceImpl(ModelRepository modelRepository, UserRepository userRepository, OfferRepository offerRepository, ModelMapper modelMapper) {
+    public OfferServiceImpl(ModelRepository modelRepository, UserRepository userRepository, OfferRepository offerRepository, ModelMapper modelMapper, OfferViewRepository offerViewRepository) {
         this.modelRepository = modelRepository;
         this.userRepository = userRepository;
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
+        this.offerViewRepository = offerViewRepository;
     }
 
     @Override
@@ -54,6 +59,8 @@ public class OfferServiceImpl implements OfferService {
         offer.setSeller(seller);
 
         Offer savedOffer = offerRepository.save(offer);
+        OfferView offerView = new OfferView(savedOffer, 0);
+        offerViewRepository.save(offerView);
         return modelMapper.map(savedOffer, OfferDTO.class);
     }
 

@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "offers")
-
 public class Offer extends TimestampedEntity {
 
     private String description;
