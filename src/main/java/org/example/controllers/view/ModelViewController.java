@@ -4,12 +4,8 @@ import jakarta.validation.Valid;
 import org.example.services.BrandService;
 import org.example.services.ModelService;
 import org.example.services.OfferService;
-import org.example.services.dtos.input.BrandDTO;
 import org.example.services.dtos.input.ModelDTO;
-import org.example.services.dtos.input.OfferDTO;
-import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.ModelOutputDTO;
-import org.example.services.dtos.output.UserOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
-public class ModelViewCiontroller {
+public class ModelViewController {
 
     private BrandService brandService;
     private ModelService modelService;

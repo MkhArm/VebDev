@@ -86,6 +86,7 @@ public class OfferServiceImpl implements OfferService {
     @Transactional
     @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOffer(String id) {
+        offerViewRepository.deleteByOfferId(id);
         offerRepository.deleteById(id);
     }
 
@@ -93,6 +94,7 @@ public class OfferServiceImpl implements OfferService {
     @Transactional
     @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOfferByModelId(String id) {
+        offerViewRepository.deleteByOfferModelId(id);
         offerRepository.deleteByModel_Id(id);
     }
 
@@ -100,6 +102,7 @@ public class OfferServiceImpl implements OfferService {
     @Transactional
     @CacheEvict(cacheNames = "offers", allEntries = true)
     public void deleteOfferByModelBrandId(String id) {
+        offerViewRepository.deleteByOfferModelBrandId(id);
         offerRepository.deleteByModel_Brand_Id(id);
     }
 
