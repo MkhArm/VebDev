@@ -15,12 +15,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 @Controller
 @RequestMapping("/")
 public class AuthController {
-
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
     private AuthService authService;
 
     @Autowired
@@ -51,6 +54,9 @@ public class AuthController {
         }
 
         this.authService.register(userRegistrationDto);
+
+        String logMessage = String.format("A user %s has registered.", userRegistrationDto.getUsername());
+        LOG.log(Level.INFO, logMessage);
 
         return "redirect:/sign/in";
     }
