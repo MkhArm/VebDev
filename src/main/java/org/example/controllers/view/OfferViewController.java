@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.example.services.BrandService;
 import org.example.services.ModelService;
 import org.example.services.OfferService;
+import org.example.services.OfferViewCounterService;
 import org.example.services.UserService;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.input.UserDTO;
@@ -26,6 +27,7 @@ public class OfferViewController {
     private BrandService brandService;
     private ModelService modelService;
     private UserService userService;
+    private OfferViewCounterService offerViewCounterService;
     @Autowired
     public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
@@ -42,6 +44,10 @@ public class OfferViewController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+    @Autowired
+    public void setOfferViewController(OfferViewCounterService offerViewCounterService) {
+        this.offerViewCounterService = offerViewCounterService;
+    }
 
     @ModelAttribute("offerDto")
     public OfferDTO initCompany() {
@@ -55,11 +61,18 @@ public class OfferViewController {
 
     @GetMapping("/offer/view/{id}")
     public String offerDetails(@PathVariable("id") String id, Model model, Principal principal){
+        // Получаем предложение
         OfferFullDetailsDTO offer = offerService.getOfferFullDetailsById(id);
-        System.out.println(offer.toString());
-        model.addAttribute("offer",offer);
+        model.addAttribute("offer", offer);
+
+        // Инкрементируем и получаем количество просмотров
+        Long viewCount = offerViewCounterService.incrementAndGetViews(id);
+
+        model.addAttribute("viewCount", viewCount);
+
         String currentUserId = principal != null ? userService.getUserByUsername(principal.getName()).getId() : null;
-        model.addAttribute("currentUserId",currentUserId);
+        model.addAttribute("currentUserId", currentUserId);
+
         return "offer-details";
     }
 

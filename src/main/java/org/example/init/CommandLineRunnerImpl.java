@@ -138,7 +138,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        createData();
+        createData();
 //
 //        // Создание и чтение CarBrand
 //        BrandDTO carBrandDTO = brandService.createCarBrand("AAAAAAAAAA");

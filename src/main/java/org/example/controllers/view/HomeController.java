@@ -1,6 +1,7 @@
 package org.example.controllers.view;
 
 import org.example.services.OfferService;
+import org.example.services.OfferViewCounterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +17,30 @@ import org.springframework.cache.annotation.EnableCaching;
 public class HomeController {
 
     private OfferService offerService;
+    private OfferViewCounterService offerViewCounterService;
 
     @Autowired
     public void setOfferService(OfferService offerService) {
         this.offerService = offerService;
     }
 
+    @Autowired
+    public void setOfferViewCounterService(OfferViewCounterService offerViewCounterService) {
+        this.offerViewCounterService = offerViewCounterService;
+    }
+
     @GetMapping("/home")
-    @Cacheable("offers")
     public String home(Model model) {
+        // Получение списка предложений
         List<OfferDetailsDTO> offers = offerService.getOfferDetails();
         model.addAttribute("offers", offers);
+
+        // Вывод в консоль информации о просмотрах
+        List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
+        for (OfferViewCounterService.OfferViewCountPair pair : offerViewCounts) {
+            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
+        }
+
         return "home";
     }
 }
