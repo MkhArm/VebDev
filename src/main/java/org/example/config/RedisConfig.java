@@ -39,7 +39,7 @@ public class RedisConfig {
                 .cacheDefaults(cacheConfig)
                 .withCacheConfiguration("users", myDefaultCacheConfig(Duration.ofMinutes(10)))
                 .withCacheConfiguration("brands", myDefaultCacheConfig(Duration.ofMinutes(10)))
-                .withCacheConfiguration("brands", myDefaultCacheConfig(Duration.ofMinutes(10)))
+                .withCacheConfiguration("offers", myDefaultCacheConfig(Duration.ofMinutes(10)))
                 .withCacheConfiguration("models", myDefaultCacheConfig(Duration.ofMinutes(10)))
                 .withCacheConfiguration("user_roles", myDefaultCacheConfig(Duration.ofMinutes(60)))
                 .build();
