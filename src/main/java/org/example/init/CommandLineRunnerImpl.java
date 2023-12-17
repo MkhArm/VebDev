@@ -142,6 +142,9 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 
         createData(); // надо закомментить для показа реализации загрузки в кэш из базы
 
+//        for (int i = 0; i < 10000; i++) {
+//            brandService.createCarBrand("Brand №" + i);
+//        }
 
 
 //
