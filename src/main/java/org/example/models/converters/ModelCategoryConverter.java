@@ -8,7 +8,7 @@ public class ModelCategoryConverter implements AttributeConverter<ModelCategory,
 
     @Override
     public Integer convertToDatabaseColumn(ModelCategory attribute) {
-        System.out.println(attribute.getModelCategoryCode());
+//        System.out.println(attribute.getModelCategoryCode());
         return attribute == null ? null : attribute.getModelCategoryCode();
     }
 

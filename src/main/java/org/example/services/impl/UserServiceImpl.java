@@ -122,7 +122,6 @@ public class UserServiceImpl implements UserService, InternalUserService {
     }
 
     @Override
-    @Cacheable("users")
     public UserDTO getUserDTOById(String id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));

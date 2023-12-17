@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -20,11 +21,18 @@ import jakarta.validation.Validator;
 public class ApplicationBeanConfiguration {
 
     @Bean
-    public Validator validator(){
+    public Validator validator1(){
         return Validation
                 .buildDefaultValidatorFactory()
                 .getValidator();
     }
+
+    @Bean
+    public LocalValidatorFactoryBean validator() {
+        LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
+        return validatorFactoryBean;
+    }
+
     @Bean
     public ModelMapper modelMapper(){
         ModelMapper modelMapper = new ModelMapper();

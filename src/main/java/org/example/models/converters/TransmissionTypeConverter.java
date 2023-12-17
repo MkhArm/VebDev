@@ -8,7 +8,7 @@ public class TransmissionTypeConverter implements AttributeConverter<Transmissio
 
     @Override
     public Integer convertToDatabaseColumn(TransmissionType attribute) {
-        System.out.println(attribute.getTransmissionTypeCode());
+//        System.out.println(attribute.getTransmissionTypeCode());
         return attribute == null ? null : attribute.getTransmissionTypeCode();
     }
 

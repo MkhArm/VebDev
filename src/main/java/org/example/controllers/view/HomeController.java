@@ -45,11 +45,11 @@ public class HomeController {
         model.addAttribute("offers", offers);
 
         // Вывод в консоль информации о просмотрах
-        List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
-        System.out.println();
-        for (OfferViewCounterService.OfferViewCountPair pair : offerViewCounts) {
-            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
-        }
+//        List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
+//        System.out.println();
+//        for (OfferViewCounterService.OfferViewCountPair pair : offerViewCounts) {
+//            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
+//        }
 
         return "home";
     }

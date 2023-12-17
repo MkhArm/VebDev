@@ -1,6 +1,7 @@
 package org.example.services.dtos.input;
 
 import jakarta.validation.constraints.*;
+import org.example.util.customValidators.annotations.UniqueUsername;
 
 public class UserRegistrationDto {
 
@@ -12,8 +13,9 @@ public class UserRegistrationDto {
 
     public UserRegistrationDto() {}
 
+    @UniqueUsername
     @NotEmpty(message = "User name cannot be null or empty!")
-    @Size(min = 5, max = 20)
+    @Size(min = 4, max = 20)
     public String getUsername() {
         return username;
     }
@@ -57,6 +59,11 @@ public class UserRegistrationDto {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    @AssertTrue(message = "Passwords do not match")
+    public boolean getIsPasswordsMatch() {
+        return password != null && password.equals(confirmPassword);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class EngineTypeConverter implements AttributeConverter<EngineType, Integ
 
     @Override
     public Integer convertToDatabaseColumn(EngineType attribute) {
-        System.out.println(attribute.getEngineTypeCode());
+//        System.out.println(attribute.getEngineTypeCode());
         return attribute == null ? null : attribute.getEngineTypeCode();
     }
 

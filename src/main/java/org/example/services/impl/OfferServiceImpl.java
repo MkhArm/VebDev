@@ -66,7 +66,6 @@ public class OfferServiceImpl implements OfferService {
 
 
     @Override
-    @Cacheable("offers")
     public OfferDTO getOfferById(String id) {
         Offer offer = offerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Offer not found with id: " + id));
@@ -119,7 +118,6 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    @Cacheable("offers")
     public OfferFullDetailsDTO getOfferFullDetailsById(String id) {
         return modelMapper.map(offerRepository.findById(id), OfferFullDetailsDTO.class);
     }

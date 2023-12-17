@@ -13,16 +13,22 @@ import org.example.services.dtos.output.OfferFullDetailsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.security.Principal;
 
 @Controller
 public class OfferViewController {
+
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
     private OfferService offerService;
     private BrandService brandService;
     private ModelService modelService;
@@ -93,7 +99,9 @@ public class OfferViewController {
             System.out.println(offerDto);
             return "redirect:/offer/add";
         }
-        offerService.createOffer(offerDto);
+        offerDto = offerService.createOffer(offerDto);
+        String logMessage = String.format("User %s has added offer %s.", SecurityContextHolder.getContext().getAuthentication().getName(), offerDto.getId());
+        LOG.log(Level.INFO, logMessage);
         return "redirect:/home";
     }
 
@@ -101,7 +109,7 @@ public class OfferViewController {
     public String showEditOfferPage(@PathVariable("id") String id, Model model) {
         OfferDTO offer = offerService.getOfferById(id);
         model.addAttribute("offer", offer);
-        System.out.println(offer.toString());
+//        System.out.println(offer.toString());
         model.addAttribute("models",modelService.findAll());
         model.addAttribute("users",userService.findAll());
         return "offer-edit";
@@ -116,13 +124,17 @@ public class OfferViewController {
             return "redirect:/offer/edit/" + id;
         }
 
-        offerService.editOffer(id, offerDto);
+        offerDto = offerService.editOffer(id, offerDto);
+        String logMessage = String.format("User %s has edited offer %s.", SecurityContextHolder.getContext().getAuthentication().getName(), offerDto.getId());
+        LOG.log(Level.INFO, logMessage);
         return "redirect:/home";
     }
 
     @GetMapping("/offer/delete/{id}")
     public String showDeleteOfferPage(@PathVariable("id") String id, Model model) {
         offerService.deleteOffer(id);
+        String logMessage = String.format("User %s has deleted offer %s.", SecurityContextHolder.getContext().getAuthentication().getName(), id);
+        LOG.log(Level.INFO, logMessage);
         return "redirect:/home";
     }
 

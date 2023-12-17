@@ -28,9 +28,9 @@ public class OfferViewServiceImpl implements OfferViewService {
     public void updateOfferViewsPeriodically() {
         // Получение данных из кэша
         List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
-        System.out.println();
+//        System.out.println();
         for (OfferViewCounterService.OfferViewCountPair pair : offerViewCounts) {
-            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
+//            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
 
             // Обновление или запись данных в базу данных
             String offerId = pair.getOfferId();
@@ -42,7 +42,7 @@ public class OfferViewServiceImpl implements OfferViewService {
             if (offerView == null) {
                 // Если запись не найдена, вы можете решить не предпринимать дополнительных действий,
                 // или создать логику для обработки ситуации отсутствия OfferView
-                System.out.println("OfferView not found for Offer ID: " + offerId);
+//                System.out.println("OfferView not found for Offer ID: " + offerId);
             } else {
                 // Если запись найдена, обновляем количество просмотров
                 offerView.setViews(views.intValue());
