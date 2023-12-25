@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:replace="~{fragments/head}"></head>
 
@@ -78,17 +78,13 @@
                         </div>
                     </select>
                 </div>
-
-                <div class="mb-3">
-                    <label for="user-select">Seller</label>
-                    <select th:field="*{seller_id}" class="form-control" id="user-select" name="user">
-                        <div th:each="user : ${users}">
-                            <option th:value="${user.id}"
-                                    th:selected="${user.id eq offer.seller_id}"
-                                    th:text="${user.username}"></option>
-                        </div>
-                    </select>
-                </div>
+                <select readonly th:field="*{seller_id}" class="form-control" id="user1" name="user1" hidden>
+                    <div th:each="user : ${users}">
+                        <option th:value="${user.id}"
+                                th:selected="${user.id eq offer.seller_id}"
+                                th:text="${user.username}"></option>
+                    </div>
+                </select>
 
                 <button type="submit" class="btn btn-primary">Сохранить изменения</button>
             </form>

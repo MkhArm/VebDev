@@ -3,6 +3,7 @@ package org.example.config;
 import org.example.models.entities.Model;
 import org.example.models.entities.Offer;
 import org.example.models.entities.User;
+import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.ModelOutputDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;
@@ -49,8 +50,9 @@ public class ApplicationBeanConfiguration {
         typeOfferFullDetailsDTO.addMappings(m->m.map(src -> src.getModel().getBrand().getName(), OfferFullDetailsDTO::setBrandName));
         typeOfferFullDetailsDTO.addMappings(m->m.map(src -> src.getSeller().getId(), OfferFullDetailsDTO::setSeller_id));
         typeOfferFullDetailsDTO.addMappings(m->m.map(src -> src.getSeller().getUsername(), OfferFullDetailsDTO::setSeller_username));
-//        TypeMap<User, UserOutputDTO> typeUserOutputDTO = modelMapper.createTypeMap(User.class, UserOutputDTO.class);
-//        typeUserOutputDTO.addMappings(m->m.map(src -> src.getActive(), UserOutputDTO::setActive));
+        TypeMap<Offer, OfferDTO> typeOfferDTO = modelMapper.createTypeMap(Offer.class, OfferDTO.class);
+        typeOfferDTO.addMappings(m->m.map(src -> src.getModel().getId(), OfferDTO::setModel_id));
+        typeOfferDTO.addMappings(m->m.map(src -> src.getSeller().getId(), OfferDTO::setSeller_id));
 
         return modelMapper;
     }

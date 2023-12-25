@@ -119,11 +119,17 @@ public class OfferViewController {
     public String editOffer(@PathVariable("id") String id, @Valid OfferDTO offerDto, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
+            System.out.println(offerDto);
+            offerDto.setSeller_id(offerService.getOfferById(offerDto.getId()).getSeller_id());
+            System.out.println(offerService.getOfferById(offerDto.getId()));
+            System.out.println(offerDto);
             redirectAttributes.addFlashAttribute("offerDto", offerDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerDto", bindingResult);
             return "redirect:/offer/edit/" + id;
         }
-
+        System.out.println(offerDto);
+        offerDto.setSeller_id(offerService.getOfferById(offerDto.getId()).getSeller_id());
+        System.out.println(offerDto);
         offerDto = offerService.editOffer(id, offerDto);
         String logMessage = String.format("User %s has edited offer %s.", SecurityContextHolder.getContext().getAuthentication().getName(), offerDto.getId());
         LOG.log(Level.INFO, logMessage);
