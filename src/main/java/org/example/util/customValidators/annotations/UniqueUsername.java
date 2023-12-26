@@ -3,7 +3,6 @@ package org.example.util.customValidators.annotations;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import org.example.util.customValidators.UniqueUsernameValidator;
-
 import java.lang.annotation.*;
 
 @Documented

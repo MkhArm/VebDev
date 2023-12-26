@@ -76,16 +76,10 @@
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label for="user-select">Seller</label>
-                    <select th:field="*{seller_id}" class="form-control" id="user-select" name="user">
-                        <div th:each="user : ${users}">
-                            <option th:value="${user.id}" th:text="${user.username}"></option>
-                        </div>
-                    </select>
-                </div>
+                <input type="hidden" th:field="*{seller_id}" th:value="'1111'" />
 
                 <button type="submit" class="btn btn-primary">Add Offer</button>
+
             </form>
         </div>
     </div>

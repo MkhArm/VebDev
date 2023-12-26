@@ -10,7 +10,6 @@ public class OfferView extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "offer_id")
     private Offer offer;
-
     private int views;
 
     public OfferView(Offer offer, int views) {

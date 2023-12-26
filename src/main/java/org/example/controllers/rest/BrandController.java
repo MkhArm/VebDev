@@ -23,7 +23,6 @@ public class BrandController {
 
     @PostMapping
     public ResponseEntity<BrandDTO> createCarBrand(@RequestBody @Valid BrandRequest brandRequest) {
-        // Используем новый класс CarBrandRequest для передачи параметров
         BrandDTO brandDTO = brandService.createCarBrand(brandRequest.getName());
         return new ResponseEntity<>(brandDTO, HttpStatus.CREATED);
     }

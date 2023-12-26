@@ -7,12 +7,8 @@ import org.example.services.OfferService;
 import org.example.services.OfferViewCounterService;
 import org.example.services.UserService;
 import org.example.services.dtos.input.OfferDTO;
-import org.example.services.dtos.input.UserDTO;
-import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.security.Principal;
 
 @Controller
@@ -99,6 +94,7 @@ public class OfferViewController {
             System.out.println(offerDto);
             return "redirect:/offer/add";
         }
+        offerDto.setSeller_id(userService.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()).getId());
         offerDto = offerService.createOffer(offerDto);
         String logMessage = String.format("User %s has added offer %s.", SecurityContextHolder.getContext().getAuthentication().getName(), offerDto.getId());
         LOG.log(Level.INFO, logMessage);

@@ -7,12 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.example.services.dtos.output.OfferDetailsDTO;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 
 @Controller

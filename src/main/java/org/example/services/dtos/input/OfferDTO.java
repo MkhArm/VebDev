@@ -33,6 +33,17 @@ public class OfferDTO {
         this.seller_id = seller_id;
     }
 
+    public OfferDTO(String description, EngineType engine, String imageUrl, Integer mileage, BigDecimal price, TransmissionType transmission, Integer year, String model_id) {
+        this.description = description;
+        this.engine = engine;
+        this.imageUrl = imageUrl;
+        this.mileage = mileage;
+        this.price = price;
+        this.transmission = transmission;
+        this.year = year;
+        this.model_id = model_id;
+    }
+
     public OfferDTO() {
     }
     public void setId(String id) {
@@ -100,7 +111,6 @@ public class OfferDTO {
     public String getModel_id() {
         return model_id;
     }
-    @NotNull(message = "Seller cannot be null")
     public String getSeller_id() {
         return seller_id;
     }
