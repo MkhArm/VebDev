@@ -2,7 +2,6 @@ package org.example.models.baseEntities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.*;
-
 import java.time.LocalDateTime;
 
 @MappedSuperclass

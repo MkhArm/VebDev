@@ -1,6 +1,5 @@
 package org.example.services.dtos.output;
 
-import jakarta.validation.constraints.NotBlank;
 import org.example.models.enums.EngineType;
 import org.example.models.enums.TransmissionType;
 import org.example.services.dtos.baseEntities.BaseEntityDTO;

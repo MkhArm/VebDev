@@ -61,11 +61,9 @@ public class OfferFullDetailsDTO extends BaseEntityDTO {
     public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
-
     public void setSeller_id(String seller_id) {
         this.seller_id = seller_id;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }

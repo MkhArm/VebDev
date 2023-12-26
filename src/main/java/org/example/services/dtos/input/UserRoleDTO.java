@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotNull;
 import org.example.models.enums.UserRoleType;
 import org.example.util.customValidators.annotations.UserRoleConstraint;
 
-import java.util.UUID;
 @UserRoleConstraint
 public class UserRoleDTO {
     private String id;

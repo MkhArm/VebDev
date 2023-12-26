@@ -1,16 +1,10 @@
 package org.example.services;
 
 import jakarta.transaction.Transactional;
-import org.example.models.enums.EngineType;
-import org.example.models.enums.TransmissionType;
 import org.example.services.dtos.input.OfferDTO;
-import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;
-
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 public interface OfferService {
     OfferDTO createOffer(OfferDTO offerDTO);

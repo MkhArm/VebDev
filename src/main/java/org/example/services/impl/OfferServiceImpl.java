@@ -11,7 +11,6 @@ import org.example.repositories.OfferRepository;
 import org.example.repositories.OfferViewRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.OfferService;
-import org.example.services.OfferViewService;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;

@@ -29,8 +29,6 @@ public class OfferView extends BaseEntity {
         this.views = views;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "offer_id")
     public Offer getOffer() {
         return offer;
     }

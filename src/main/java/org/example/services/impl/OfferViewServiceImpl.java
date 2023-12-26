@@ -27,9 +27,9 @@ public class OfferViewServiceImpl implements OfferViewService {
     @Scheduled(fixedRate = 60000) // fixedRate / 1000 миллисекунд = fixedRate секунд
     public void updateOfferViewsPeriodically() {
         // Получение данных из кэша
-        List<OfferViewCounterService.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
+        List<OfferViewCounterServiceImpl.OfferViewCountPair> offerViewCounts = offerViewCounterService.getAllOfferViews();
 //        System.out.println();
-        for (OfferViewCounterService.OfferViewCountPair pair : offerViewCounts) {
+        for (OfferViewCounterServiceImpl.OfferViewCountPair pair : offerViewCounts) {
 //            System.out.println("Offer ID: " + pair.getOfferId() + ", Views: " + pair.getViewCount());
 
             // Обновление или запись данных в базу данных

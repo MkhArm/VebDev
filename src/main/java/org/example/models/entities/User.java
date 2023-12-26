@@ -2,7 +2,6 @@ package org.example.models.entities;
 
 import jakarta.persistence.*;
 import org.example.models.baseEntities.TimestampedEntity;
-
 import java.util.*;
 
 @Entity

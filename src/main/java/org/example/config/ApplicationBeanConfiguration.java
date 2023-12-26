@@ -2,21 +2,17 @@ package org.example.config;
 
 import org.example.models.entities.Model;
 import org.example.models.entities.Offer;
-import org.example.models.entities.User;
 import org.example.services.dtos.input.OfferDTO;
 import org.example.services.dtos.output.ModelOutputDTO;
 import org.example.services.dtos.output.OfferDetailsDTO;
 import org.example.services.dtos.output.OfferFullDetailsDTO;
-import org.example.services.dtos.output.UserOutputDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-
 
 @Configuration
 public class ApplicationBeanConfiguration {

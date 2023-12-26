@@ -1,15 +1,13 @@
 package org.example.services.dtos.output;
 
-
 import org.example.models.enums.ModelCategory;
 import org.example.services.dtos.baseEntities.BaseEntityDTO;
 
 public class ModelOutputDTO extends BaseEntityDTO{
-    public String id;
 
+    public String id;
     public String name;
     public ModelCategory category;
-
     public String imageUrl;
     public Integer startYear;
     public Integer endYear;
@@ -26,53 +24,41 @@ public class ModelOutputDTO extends BaseEntityDTO{
 
     public ModelOutputDTO() {
     }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public ModelCategory getCategory() {
-        return category;
-    }
-
     public void setCategory(ModelCategory category) {
         this.category = category;
     }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    public Integer getStartYear() {
-        return startYear;
-    }
-
     public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
-
-    public Integer getEndYear() {
-        return endYear;
-    }
-
     public void setEndYear(Integer endYear) {
         this.endYear = endYear;
     }
-
-    public String getBrand_name() {
-        return brand_name;
-    }
-
     public void setBrand_name(String brand_name) {
         this.brand_name = brand_name;
+    }
+    public String getName() {
+        return name;
+    }
+    public ModelCategory getCategory() {
+        return category;
+    }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public Integer getStartYear() {
+        return startYear;
+    }
+    public Integer getEndYear() {
+        return endYear;
+    }
+    public String getBrand_name() {
+        return brand_name;
     }
 
     @Override

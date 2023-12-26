@@ -1,4 +1,5 @@
 package org.example.models.converters;
+
 import jakarta.persistence.AttributeConverter;
 import org.example.models.enums.TransmissionType;
 import jakarta.persistence.Converter;

@@ -3,29 +3,16 @@ package org.example.services.dtos.input;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.example.models.enums.UserRoleType;
+import org.example.util.customValidators.annotations.UniqueUsername;
 
 public class UserDTO {
     private String id;
-
-//    @UsernameConstraint
-    @NotBlank(message = "Username name cannot be blank")
     private String username;
-
-//    @PasswordConstraint
     private String password;
-
-    @NotBlank(message = "First name cannot be blank")
     private String firstName;
-
-    @NotBlank(message = "Last name cannot be blank")
     private String lastName;
-
-    @NotNull(message = "Is active cannot be null")
     private Boolean isActive;
-
-    @NotBlank(message = "Image URL cannot be blank")
     private String imageUrl;
-    @NotNull(message = "Role cannot be null")
     private UserRoleType role;
 
     public UserDTO(String username, String password, String firstName, String lastName, Boolean isActive, String imageUrl, UserRoleType role) {
@@ -50,77 +37,67 @@ public class UserDTO {
 
     public UserDTO() {
     }
-
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
     public void setActive(Boolean active) {
         isActive = active;
     }
-
     public void setIsActive(Boolean active) {
         isActive = active;
     }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    public UserRoleType getRole() {
-        return role;
+    public String getId() {
+        return id;
     }
-
     public void setRole(UserRoleType role) {
         this.role = role;
+    }
+
+    @UniqueUsername
+    @NotBlank(message = "Username name cannot be blank")
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    @NotBlank(message = "First name cannot be blank")
+    public String getFirstName() {
+        return firstName;
+    }
+    @NotBlank(message = "Last name cannot be blank")
+    public String getLastName() {
+        return lastName;
+    }
+    public Boolean getActive() {
+        return isActive;
+    }
+    @NotNull(message = "Is active cannot be null")
+    public Boolean getIsActive() {
+        return isActive;
+    }
+    @NotBlank(message = "Image URL cannot be blank")
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    @NotNull(message = "Role cannot be null")
+    public UserRoleType getRole() {
+        return role;
     }
 
     @Override

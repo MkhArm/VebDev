@@ -6,7 +6,6 @@ import org.example.models.converters.TransmissionTypeConverter;
 import org.example.models.baseEntities.TimestampedEntity;
 import org.example.models.enums.EngineType;
 import org.example.models.enums.TransmissionType;
-
 import java.math.BigDecimal;
 
 @Entity

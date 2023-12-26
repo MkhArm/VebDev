@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 public class CommandLineRunnerImpl implements CommandLineRunner {
@@ -99,17 +97,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         String user18 = userService.createUser(new UserDTO("username20", "password20", "User20", "Doe", true, "userImageUrl20")).getId();
         String admin = userService.createUser(new UserDTO("admin", "admin", "Admin", "Admin", true, "adminImageUrl", UserRoleType.ADMIN)).getId();
 
-//        for (int i = 0; i < 10000; i++) {
-//            String username = "username" + (i + 21);
-//            String password = "password" + (i + 21);
-//            String firstName = "User" + (i + 21);
-//            String lastName = "Doe" + (i + 21);
-//            boolean active = i % 2 == 0;
-//            String imageUrl = "userImageUrl" + (i + 21);
-//
-//            userService.createUser(new UserDTO(username, password, firstName, lastName, active, imageUrl)).getId();
-//        }
-
         OfferDTO offerDTO1 = offerService.createOffer(new OfferDTO("Все автомобили, представленные в продаже, проходят диагностику по всем параметрам, с результатами диагностики Вы можете ознакомиться при осмотре автомобиля."
                 , EngineType.GASOLINE, "/images/offers/ToyotaCamry2019.png", 81341, new BigDecimal("2399000.00"), TransmissionType.AUTOMATIC, 2019, model1, user4));
         OfferDTO offerDTO2 = offerService.createOffer(new OfferDTO("Распродажа, финальный sale!\n\uD83D\uDCA5Гарантия 2 ГОДА или 100 000км пробега на ВСЕ НОВЫЕ автомобили BMW в РОЛЬФ Премиум Вешки!\uD83D\uDCA5"
@@ -146,77 +133,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //            brandService.createCarBrand("Brand №" + i);
 //        }
 
-
-//
-//        // Создание и чтение CarBrand
-//        BrandDTO carBrandDTO = brandService.createCarBrand("AAAAAAAAAA");
-//        System.out.println("Создана марка автомобиля: " + carBrandDTO);
-//
-//        BrandDTO readCarBrand = brandService.getCarBrandById(carBrandDTO.getId());
-//        System.out.println("Прочитана марка автомобиля: " + readCarBrand);
-//
-//        // Обновление CarBrand
-//
-//
-////        // Удаление CarBrand
-////        carBrandService.deleteCarBrand(carBrandDTO.getId());
-////        System.out.println("Удалена марка автомобиля с ID: " + carBrandDTO.getId());
-//
-//        // Создание и чтение CarModel
-//        BrandDTO brandDTO = brandService.createCarBrand("Toyotaaaaaaaaaaaaaaaaaaaa");
-//
-//        ModelDTO modelDTO = modelService.createCarModel(new ModelDTO("Camryyyyyyyyyyyyyyyyyy", ModelCategory.CAR, "imageUrl1", 1990, 2021, brandDTO.getId()));
-//        System.out.println("Создана модель автомобиля с ID: " + modelDTO.getId());
-//
-//        ModelDTO readCarModel = modelService.getCarModelById(modelDTO.getId());
-//        System.out.println("Прочитана модель автомобиля с ID: " + readCarModel.getId());
-//
-//        // Обновление CarModel
-//
-//
-////        // Удаление CarModel
-////        carModelService.deleteCarModel(carModelDTO.getId());
-////        System.out.println("Удалена модель автомобиля с ID: " + carModelDTO.getId());
-//
-//        // Создание и чтение UserRole
-////        UserRoleDTO userRoleDTO = userRoleService.createUserRole(new UserRoleDTO(UserRoleType.USER));
-////        System.out.println("Создана роль пользователя: " + userRoleDTO);
-////
-////        UserRoleDTO readUserRole = userRoleService.getUserRoleById(userRoleDTO.getId());
-////        System.out.println("Прочитана роль пользователя: " + readUserRole);
-//
-//        // Создание и чтение User
-//        UserDTO userDTO = new UserDTO("Rayan", "ssssssssaaaaaa", "sas", "asa", true, "7777777777");
-//        userDTO = userService.createUser(userDTO);
-//        System.out.println("Создан пользователь с ID: " + userDTO.getId());
-//
-//        UserDTO readUser = userService.getUserByUsername(userDTO.getUsername());
-//        System.out.println("Прочитан пользователь: " + readUser.getUsername());
-//
-//        // Обновление User
-//        readUser.setLastName("Gosling");
-////        userService.updateUser(readUser);
-//        System.out.println("Обновлён пользователь");
-//
-////        // Удаление UserRole
-////        userRoleService.deleteUserRole(userRoleDTO.getId());
-////        System.out.println("Удалена роль пользователя с ID: " + userRoleDTO.getId());
-//
-////        // Удаление User
-////        userService.deleteUser(userDTO.getId());
-////        System.out.println("Удален пользователь с ID: " + userDTO.getId());
-//
-//        OfferDTO offerDTO = new OfferDTO("Description777", EngineType.GASOLINE, "offerImageUrl1", 50000, new BigDecimal("10000.00"), TransmissionType.AUTOMATIC, 2018, modelDTO.getId().toString(), userDTO.getId().toString());
-//        offerDTO = offerService.createOffer(offerDTO);
-//        System.out.println("Создано предложение: " + offerDTO);
-//
-//        OfferDTO readOffer = offerService.getOfferById(offerDTO.getId());
-//        System.out.println("Прочитано предложение: " + readOffer);
-//
-////        // Удаление Offer
-////        offerService.deleteOffer(offerDTO.getId());
-////        System.out.println("Удалено предложение с ID: " + offerDTO.getId());
-//
 //        System.out.println("Brand Model Counts:");
 //        List<BrandModelCountDTO> brandModelCounts = brandService.getBrandModelCounts();
 //        for (BrandModelCountDTO brandModelCount : brandModelCounts) {

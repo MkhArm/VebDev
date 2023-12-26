@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.example.models.converters.RoleTypeConverter;
 import org.example.models.baseEntities.BaseEntity;
 import org.example.models.enums.UserRoleType;
-
 import java.util.*;
 
 @Entity

@@ -2,9 +2,6 @@ package org.example.models.baseEntities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UuidGenerator;
-
-import java.util.UUID;
 
 @MappedSuperclass
 public abstract class BaseEntity {

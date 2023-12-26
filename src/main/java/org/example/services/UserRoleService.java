@@ -1,10 +1,7 @@
 package org.example.services;
 
-import org.example.services.dtos.input.UserDTO;
 import org.example.services.dtos.input.UserRoleDTO;
-
 import java.util.List;
-import java.util.UUID;
 
 public interface UserRoleService {
     UserRoleDTO createUserRole(UserRoleDTO userRoleDTO);
