@@ -1,6 +1,5 @@
 package org.example.services.security;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.example.models.entities.User;
 import org.example.models.entities.UserRole;
 import org.example.models.enums.UserRoleType;
@@ -10,8 +9,6 @@ import org.example.services.exceptions.UserNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.example.services.dtos.input.UserRegistrationDto;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
